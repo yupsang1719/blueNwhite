@@ -203,8 +203,7 @@ export default function Home() {
             className="grid gap-8 sm:grid-cols-1 md:grid-cols-2"
             variants={containerVariants}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            animate="show"
           >
             {projects.map((p) => (
               <motion.div key={p.slug} variants={itemVariants}>

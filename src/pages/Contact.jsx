@@ -1,13 +1,17 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle } from 'react-icons/fi'
-import api from '../shared/api'
+import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi'
+import emailjs from '@emailjs/browser'
 
 const socials = [
-  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yourname' },
-  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/yourname' },
-  { icon: FiMail,     label: 'Email',     href: 'mailto:you@email.com' },
+  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
+  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/yupsang' },
+  { icon: FiMail,     label: 'Email',     href: 'mailto:thenngbirash124@gmail.com' },
 ]
+
+const SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const inputBase =
   'w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-900 ' +
@@ -19,15 +23,24 @@ const inputBase =
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
   async function submit(e) {
     e.preventDefault()
     setLoading(true)
+    setError(null)
     try {
-      await api.post('/api/contact', form)
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        { from_name: form.name, from_email: form.email, message: form.message },
+        { publicKey: PUBLIC_KEY },
+      )
       setSent(true)
       setForm({ name: '', email: '', message: '' })
+    } catch {
+      setError('Something went wrong. Please email me directly at thenngbirash124@gmail.com')
     } finally {
       setLoading(false)
     }
@@ -109,6 +122,13 @@ export default function Contact() {
                     onChange={e => setForm({ ...form, message: e.target.value })}
                   />
                 </div>
+                {error && (
+                  <div className="flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700
+                                  dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">
+                    <FiAlertCircle className="mt-0.5 shrink-0" />
+                    {error}
+                  </div>
+                )}
                 <button
                   disabled={loading}
                   className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-6 py-2.5 font-medium

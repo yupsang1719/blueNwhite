@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
-import { Outlet, Link, NavLink } from 'react-router-dom'
+import { Outlet, Link, NavLink, useLocation } from 'react-router-dom'
 import { FiSun, FiMoon, FiGithub, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi'
 import { useDarkMode } from '../shared/useDarkMode'
 
 const socials = [
-  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yourname' },
-  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/yourname' },
-  { icon: FiMail,     label: 'Email',     href: 'mailto:you@email.com' },
+  { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
+  { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/yupsang' },
+  { icon: FiMail,     label: 'Email',     href: 'mailto:thenngbirash124@gmail.com' },
 ]
 
 const nav = [
@@ -20,6 +20,11 @@ export default function Layout() {
   const [dark, toggleDark] = useDarkMode()
   const [menuOpen, setMenuOpen] = useState(false)
   const headerRef = useRef(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   // Close mobile menu when clicking outside the header
   useEffect(() => {
