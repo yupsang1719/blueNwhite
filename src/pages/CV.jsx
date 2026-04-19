@@ -1,4 +1,5 @@
-import { FiDownload, FiMail, FiGithub, FiLinkedin, FiGlobe } from 'react-icons/fi'
+import { useRef, useState } from 'react'
+import { FiDownload, FiMail, FiGithub, FiLinkedin, FiGlobe, FiLoader } from 'react-icons/fi'
 
 const contact = [
   { icon: FiMail,     label: 'thenngbirash124@gmail.com', href: 'mailto:thenngbirash124@gmail.com' },
@@ -97,34 +98,63 @@ const skills = [
 ]
 
 export default function CV() {
-  return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 print:bg-white">
+  const cvRef = useRef(null)
+  const [generating, setGenerating] = useState(false)
 
-      {/* Print button — hidden when printing */}
-      <div className="print:hidden sticky top-0 z-10 flex justify-end gap-3 border-b bg-white/80 px-8 py-3 backdrop-blur dark:border-neutral-800 dark:bg-neutral-900/80">
+  async function downloadPDF() {
+    if (generating) return
+    setGenerating(true)
+    try {
+      const html2pdf = (await import('html2pdf.js')).default
+      await html2pdf()
+        .set({
+          margin: [12, 14, 12, 14],
+          filename: 'Birash-Thing-CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        })
+        .from(cvRef.current)
+        .save()
+    } finally {
+      setGenerating(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+
+      {/* Toolbar */}
+      <div className="sticky top-0 z-10 flex items-center gap-3 border-b bg-white/80 px-8 py-3 backdrop-blur
+                      dark:border-neutral-800 dark:bg-neutral-900/80">
         <span className="flex-1 text-sm text-neutral-500 dark:text-neutral-400">
-          Click "Download PDF" → Save as PDF in the print dialog
+          Birash Thing — CV
         </span>
         <button
-          onClick={() => window.print()}
-          className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-primary-700"
+          onClick={downloadPDF}
+          disabled={generating}
+          className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-5 py-2 text-sm font-medium
+                     text-white transition hover:bg-primary-700 disabled:opacity-60"
         >
-          <FiDownload size={14} /> Download PDF
+          {generating
+            ? <><FiLoader size={14} className="animate-spin" /> Generating…</>
+            : <><FiDownload size={14} /> Download PDF</>
+          }
         </button>
       </div>
 
-      {/* CV content */}
-      <div className="mx-auto max-w-3xl px-8 py-10 print:px-0 print:py-0">
+      {/* CV content — captured for PDF (always light background) */}
+      <div ref={cvRef} className="mx-auto max-w-3xl bg-white px-8 py-10">
 
         {/* Header */}
-        <div className="mb-8 border-b pb-6 print:border-neutral-300 dark:border-neutral-800">
-          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white print:text-black">
+        <div className="mb-8 border-b pb-6 border-neutral-200dark:border-neutral-800">
+          <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white text-neutral-900">
             Birash Thing
           </h1>
-          <p className="mt-1 text-lg text-primary-600 dark:text-primary-400 print:text-blue-700">
+          <p className="mt-1 text-lg text-primary-600 dark:text-primary-400 text-blue-700">
             Full-Stack Web Developer
           </p>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 print:text-neutral-700">
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 text-neutral-700">
             Full-stack developer with 6+ years across enterprise Java, education tech, and modern MERN SaaS.
             Currently building BarBooks — a live SaaS product with paying clients — while working as Web Developer
             & Marketing Manager at a hospitality group in Aldershot. Open to full-stack, web developer, or hybrid
@@ -133,7 +163,7 @@ export default function CV() {
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {contact.map(({ icon: Icon, label, href }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-primary-600 dark:text-neutral-400 print:text-neutral-700">
+                className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-primary-600 dark:text-neutral-400 text-neutral-700">
                 <Icon size={12} /> {label}
               </a>
             ))}
@@ -142,18 +172,18 @@ export default function CV() {
 
         {/* Experience */}
         <section className="mb-8">
-          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 print:text-neutral-500">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 text-neutral-500">
             Experience
           </h2>
           <div className="space-y-5">
             {experience.map((xp, i) => (
               <div key={i} className="grid grid-cols-[1fr_auto] gap-x-4">
                 <div>
-                  <p className="font-semibold text-neutral-900 dark:text-white print:text-black">{xp.role}</p>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 print:text-neutral-600">
+                  <p className="font-semibold text-neutral-900 dark:text-white text-neutral-900">{xp.role}</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 text-neutral-600">
                     {xp.company} · {xp.location}
                   </p>
-                  <ul className="mt-2 space-y-1 pl-4 text-sm text-neutral-700 dark:text-neutral-300 print:text-neutral-700">
+                  <ul className="mt-2 space-y-1 pl-4 text-sm text-neutral-700 dark:text-neutral-300 text-neutral-700">
                     {xp.points.map((p, j) => (
                       <li key={j} className="relative before:absolute before:-left-3 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-neutral-400">
                         {p}
@@ -161,7 +191,7 @@ export default function CV() {
                     ))}
                   </ul>
                 </div>
-                <p className="shrink-0 text-right text-xs text-neutral-400 print:text-neutral-500">{xp.period}</p>
+                <p className="shrink-0 text-right text-xs text-neutral-400 text-neutral-500">{xp.period}</p>
               </div>
             ))}
           </div>
@@ -169,23 +199,23 @@ export default function CV() {
 
         {/* Projects */}
         <section className="mb-8">
-          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 print:text-neutral-500">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 text-neutral-500">
             Projects
           </h2>
           <div className="space-y-4">
             {projects.map((p, i) => (
               <div key={i}>
                 <div className="flex items-baseline gap-2">
-                  <p className="font-semibold text-neutral-900 dark:text-white print:text-black">{p.name}</p>
+                  <p className="font-semibold text-neutral-900 dark:text-white text-neutral-900">{p.name}</p>
                   {p.url && (
                     <a href={`https://${p.url}`} target="_blank" rel="noreferrer"
-                      className="text-xs text-primary-600 hover:underline print:text-blue-700">
+                      className="text-xs text-primary-600 hover:underline text-blue-700">
                       {p.url}
                     </a>
                   )}
                 </div>
-                <p className="mt-0.5 text-sm text-neutral-600 dark:text-neutral-300 print:text-neutral-700">{p.desc}</p>
-                <p className="mt-1 text-xs text-neutral-400 print:text-neutral-500">{p.tech}</p>
+                <p className="mt-0.5 text-sm text-neutral-600 dark:text-neutral-300 text-neutral-700">{p.desc}</p>
+                <p className="mt-1 text-xs text-neutral-400 text-neutral-500">{p.tech}</p>
               </div>
             ))}
           </div>
@@ -193,21 +223,21 @@ export default function CV() {
 
         {/* Skills */}
         <section className="mb-8">
-          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 print:text-neutral-500">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 text-neutral-500">
             Skills
           </h2>
           <div className="space-y-2">
             {skills.map(s => (
               <div key={s.label} className="flex gap-3 text-sm">
-                <span className="w-36 shrink-0 font-medium text-neutral-700 dark:text-neutral-300 print:text-neutral-700">{s.label}</span>
-                <span className="text-neutral-600 dark:text-neutral-400 print:text-neutral-600">{s.value}</span>
+                <span className="w-36 shrink-0 font-medium text-neutral-700 dark:text-neutral-300 text-neutral-700">{s.label}</span>
+                <span className="text-neutral-600 dark:text-neutral-400 text-neutral-600">{s.value}</span>
               </div>
             ))}
           </div>
         </section>
 
         {/* Footer note */}
-        <p className="text-center text-xs text-neutral-400 print:text-neutral-500">
+        <p className="text-center text-xs text-neutral-400 text-neutral-500">
           References available on request · Aldershot, UK · Open to remote and on-site roles
         </p>
       </div>
