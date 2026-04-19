@@ -8,6 +8,7 @@ import GithubStats from '../components/GithubStats'
 import {
   FiArrowLeft, FiExternalLink, FiGithub,
   FiClock, FiUser, FiAlertTriangle, FiTool, FiTrendingUp, FiList,
+  FiX, FiChevronLeft, FiChevronRight,
 } from 'react-icons/fi'
 import {
   SiMongodb, SiExpress, SiReact, SiNodedotjs, SiRedis, SiDocker,
@@ -92,6 +93,7 @@ export default function ProjectDetail() {
   const [error, setError] = useState(null)
   const [ghStats, setGhStats] = useState(null)
   const [ghLoading, setGhLoading] = useState(false)
+  const [lightbox, setLightbox] = useState(null) // index of open image
 
   useEffect(() => {
     ;(async () => {
@@ -144,7 +146,8 @@ export default function ProjectDetail() {
 
   const { title, summary, tech = [], problem, solution, impact,
           status = 'Completed', type = 'Side Project', timeline = '2024',
-          role = 'Full-Stack Developer', repoUrl, liveUrl, features = [] } = project
+          role = 'Full-Stack Developer', repoUrl, liveUrl, features = [],
+          screenshots = [] } = project
 
   const sections = [
     problem  && { id: 'problem',  label: 'Problem' },
@@ -199,6 +202,32 @@ export default function ProjectDetail() {
               </span>
             </div>
           </header>
+
+          {/* Screenshot gallery */}
+          {screenshots.length > 0 && (
+            <div className="mb-8">
+              <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1">
+                {screenshots.map((src, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setLightbox(i)}
+                    className="group/img relative flex-none overflow-hidden rounded-xl border
+                               border-neutral-200 dark:border-neutral-800 shadow-sm
+                               focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  >
+                    <img
+                      src={src}
+                      alt={`${title} screenshot ${i + 1}`}
+                      className="h-48 w-auto max-w-xs object-cover object-top transition-transform
+                                 duration-300 group-hover/img:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/0 transition group-hover/img:bg-black/10" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Section cards */}
           <motion.div
@@ -328,6 +357,59 @@ export default function ProjectDetail() {
           )}
         </motion.aside>
       </div>
+
+      {/* Lightbox */}
+      {lightbox !== null && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full
+                       bg-white/10 text-white transition hover:bg-white/20"
+            onClick={() => setLightbox(null)}
+          >
+            <FiX size={18} />
+          </button>
+
+          {lightbox > 0 && (
+            <button
+              className="absolute left-4 grid h-9 w-9 place-items-center rounded-full
+                         bg-white/10 text-white transition hover:bg-white/20"
+              onClick={e => { e.stopPropagation(); setLightbox(n => n - 1) }}
+            >
+              <FiChevronLeft size={20} />
+            </button>
+          )}
+          {lightbox < screenshots.length - 1 && (
+            <button
+              className="absolute right-14 grid h-9 w-9 place-items-center rounded-full
+                         bg-white/10 text-white transition hover:bg-white/20"
+              onClick={e => { e.stopPropagation(); setLightbox(n => n + 1) }}
+            >
+              <FiChevronRight size={20} />
+            </button>
+          )}
+
+          <motion.img
+            key={lightbox}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
+            src={screenshots[lightbox]}
+            alt={`${title} screenshot ${lightbox + 1}`}
+            className="max-h-[85vh] max-w-full rounded-xl shadow-2xl"
+            onClick={e => e.stopPropagation()}
+          />
+
+          <p className="absolute bottom-4 text-sm text-white/50">
+            {lightbox + 1} / {screenshots.length}
+          </p>
+        </motion.div>
+      )}
     </section>
   )
 }

@@ -96,6 +96,20 @@ export default function ProjectCardVSCode({ project }) {
           </div>
         </div>
 
+        {/* Screenshot preview */}
+        {project?.screenshots?.[0] && (
+          <div className="relative overflow-hidden border-b border-neutral-200/80 dark:border-neutral-800/80">
+            <img
+              src={project.screenshots[0]}
+              alt={`${project.title} preview`}
+              className="h-40 w-full object-cover object-top transition-transform duration-500
+                         group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
+          </div>
+        )}
+
         {/* Code area (scrolls horizontally on XS to avoid squish) */}
         <div className="relative">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(37,99,235,0.06),_transparent_60%)]

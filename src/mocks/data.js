@@ -10,6 +10,11 @@ export const projects = [
       'Built a multi-tenant SaaS application with a React 19 + TanStack Query frontend delivering real-time P&L dashboards (Recharts), PDF financial reports (jsPDF), and form-validated data entry (React Hook Form + Zod). The Express v5 + MongoDB backend uses JWT auth with httpOnly cookies, AWS S3 for document storage, Helmet security headers, and rate limiting. Priced at £20–30/month to sit between free spreadsheets and enterprise software.',
     impact:
       '2 live paying UK pub clients. Targeting a £5,000 MRR opportunity across the UK\'s ~19,500 independent pubs ahead of the April 2026 HMRC Making Tax Digital compliance deadline.',
+    screenshots: [
+      '/screenshots/barbooks-1.png',
+      '/screenshots/barbooks-2.png',
+      '/screenshots/barbooks-3.png',
+    ],
     type: 'SaaS Product',
     status: 'Live',
     timeline: '2025–Present',
@@ -41,6 +46,10 @@ export const projects = [
       'Built a React 19 SPA with Vite for instant builds, Tailwind CSS for utility-first styling, and Framer Motion for smooth page transitions and scroll animations. Mock Service Worker (MSW) handles API-style data in development while static imports serve production. EmailJS powers the contact form without a backend. Deployed on a Ubuntu VPS with NGINX serving the SPA and Certbot providing HTTPS.',
     impact:
       'Live portfolio at bluenwhite.co.uk — used actively in job applications. Demonstrates full-stack thinking, deployment confidence, and attention to UI/UX detail.',
+    screenshots: [
+      '/screenshots/portfolio-1.png',
+      '/screenshots/portfolio-2.png',
+    ],
     type: 'Personal Project',
     status: 'Live',
     timeline: '2025',
@@ -71,6 +80,11 @@ export const projects = [
       'Built a full-stack MERN application with Stripe checkout for ticket purchases, jsPDF for instant PDF ticket generation sent via Nodemailer, Multer for event image uploads, JWT + bcrypt for secure auth, and a React countdown timer for upcoming events.',
     impact:
       'Eliminated manual ticketing workflows, enabled online payments, and gave the venue a professional digital presence with automated email confirmations.',
+    screenshots: [
+      '/screenshots/tracks-1.png',
+      '/screenshots/tracks-2.png',
+      '/screenshots/tracks-3.png',
+    ],
     type: 'Client Project',
     status: 'Completed',
     timeline: '2025–2026',
@@ -100,6 +114,10 @@ export const projects = [
       'Built a full-stack MERN app with Stripe for reservation payments, Zustand for client-side cart and booking state, JWT + bcrypt for auth, Nodemailer for booking confirmations, and a photo gallery of venue events.',
     impact:
       'Gave the venue a professional web presence, enabled online reservations, and reduced manual booking overhead with automated email confirmations.',
+    screenshots: [
+      '/screenshots/bull-1.png',
+      '/screenshots/bull-2.png',
+    ],
     type: 'Client Project',
     status: 'Completed',
     timeline: '2025–2026',
