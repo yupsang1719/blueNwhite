@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { fetchProjects } from '../shared/projects'
 import ProjectCardVSCode from '../components/ProjectCardVSCode'
+import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 
 const containerVariants = {
   hidden: {},
@@ -57,10 +58,23 @@ export default function Projects() {
 
   return (
     <section className="relative overflow-hidden px-4 py-16">
-      {/* background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
         dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
+
+      {/* Bee sketch accents */}
+      <BeeTrail width={240} height={85}
+        className="absolute top-8 right-0 opacity-[0.07] dark:opacity-[0.09]
+                   text-amber-500 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={50}
+        className="absolute top-6 right-52 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={34}
+        className="absolute top-16 right-40 opacity-[0.05] dark:opacity-[0.07]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
+      <BeeDoodle size={72}
+        className="absolute bottom-24 left-0 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 rotate-6 pointer-events-none" />
 
       {/* Header */}
       <motion.div

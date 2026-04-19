@@ -10,6 +10,7 @@ import {
 } from 'react-icons/si'
 import ExperienceSection from '../components/ExperienceSection'
 import SkillPill from '../components/SkillPill'
+import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 
 const CATEGORY_META = {
   Frontend: { color: '#0ea5e9', border: 'border-t-sky-400 dark:border-t-sky-500',        label: 'What users see' },
@@ -65,6 +66,20 @@ export default function About() {
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
         dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
+
+      {/* Bee sketch accents */}
+      <BeeTrail width={200} height={70}
+        className="absolute top-10 right-0 opacity-[0.07] dark:opacity-[0.09]
+                   text-amber-500 dark:text-amber-400 pointer-events-none -scale-x-100" />
+      <Honeycomb size={58}
+        className="absolute top-8 left-4 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={40}
+        className="absolute top-20 left-16 opacity-[0.05] dark:opacity-[0.07]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
+      <BeeDoodle size={76}
+        className="absolute bottom-40 right-0 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 -rotate-6 pointer-events-none" />
 
       {/* ===== Header ===== */}
       <motion.div

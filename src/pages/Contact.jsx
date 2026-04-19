@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
+import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -48,10 +49,20 @@ export default function Contact() {
 
   return (
     <section className="relative overflow-hidden px-4 py-16">
-      {/* background glow */}
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
         dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
+
+      {/* Bee sketch accents */}
+      <BeeDoodle size={80}
+        className="absolute top-4 left-2 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 -rotate-15 pointer-events-none" />
+      <BeeTrail width={180} height={65}
+        className="absolute bottom-16 right-0 opacity-[0.07] dark:opacity-[0.09]
+                   text-amber-500 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={44}
+        className="absolute bottom-8 left-6 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
 
       <div className="mx-auto w-full max-w-5xl">
         {/* Header */}

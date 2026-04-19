@@ -6,6 +6,7 @@ import ProjectCardVSCode from '../components/ProjectCardVSCode'
 import ExperienceSection from '../components/ExperienceSection'
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si'
 import SkillsMarquee from '../components/SkillsMarquee'
+import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 
 // Framer Motion animation presets
 const containerVariants = {
@@ -45,12 +46,24 @@ export default function Home() {
   return (
     <section className="relative overflow-hidden px-4">
 
-      {/* 🌊 Gentle Blue Glow Background */}
-      <div
-        className="pointer-events-none absolute inset-0 -z-10 
+      {/* Blue glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
-        dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]"
-      />
+        dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
+
+      {/* Bee sketch accents */}
+      <BeeDoodle size={88}
+        className="absolute -top-2 right-2 opacity-[0.06] dark:opacity-[0.08]
+                   text-amber-600 dark:text-amber-400 rotate-12 pointer-events-none" />
+      <BeeTrail width={220} height={80}
+        className="absolute top-16 left-0 opacity-[0.07] dark:opacity-[0.09]
+                   text-amber-500 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={52}
+        className="absolute bottom-32 left-8 opacity-[0.07] dark:opacity-[0.09]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
+      <Honeycomb size={36}
+        className="absolute bottom-20 left-20 opacity-[0.05] dark:opacity-[0.07]
+                   text-amber-600 dark:text-amber-400 pointer-events-none" />
 
       {/* ===== Hero Section ===== */}
       <div className="flex min-h-[70vh] flex-col items-center justify-center text-center space-y-6">
