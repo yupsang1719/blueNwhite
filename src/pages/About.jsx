@@ -130,15 +130,24 @@ export default function About() {
         {/* Bio */}
         <div className="mt-6 max-w-2xl space-y-3 text-neutral-600 dark:text-neutral-300">
           <p>
+            Currently building BarBooks — a live SaaS with 2 paying UK pub clients — while working as
+            Full-Stack Developer & Marketing Manager at a hospitality group in Aldershot.
+          </p>
+          <p>
             I started out in enterprise Java — building backend services for a US fintech startup and
             leading contract development for an insurance platform. Then spent three years in education,
             where I built an LMS from scratch during the pandemic and taught web technologies to university students.
+            Now I'm deep in the MERN stack, shipping production SaaS and client sites that people actually use.
           </p>
-          <p>
-            Now I'm deep in the MERN stack — building production SaaS, client websites, and tools that
-            people actually use. I care about shipping clean, fast, maintainable code and I'm equally
-            comfortable designing a database schema, wiring up a Stripe integration, or fine-tuning a UI animation.
-          </p>
+        </div>
+
+        {/* Right to work */}
+        <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50
+                        px-3 py-1 dark:border-neutral-700 dark:bg-neutral-800/60">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary-500" />
+          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+            Right to work in the UK · Spouse visa (unrestricted) · No sponsorship required
+          </span>
         </div>
 
         {/* Stats strip */}
