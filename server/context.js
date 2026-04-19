@@ -16,8 +16,9 @@ Portfolio: bluenwhite.co.uk
 Frontend: React 19, Vite, Tailwind CSS, Framer Motion, React Router
 Backend: Node.js, Express, MongoDB, Mongoose, JWT/Auth, Stripe, AWS S3
 DevOps: NGINX, VPS deployment (Ubuntu), Docker, Vercel/Render
-Tools: Git, Postman, VS Code, Spring Boot (prior experience)
+Tools: Git, Postman, VS Code, Spring Boot (prior experience), Adobe Creative Suite, Canva
 Also experienced in: PHP, Java, MySQL from earlier career
+Content & Marketing: Social media management, short-form video (reels), graphic design, photography, videography, copywriting, print asset design
 
 --- PROJECTS ---
 1. BarBooks (Live SaaS — private repo)
@@ -41,7 +42,10 @@ Also experienced in: PHP, Java, MySQL from earlier career
 
 --- WORK EXPERIENCE ---
 1. Web Developer & Marketing Manager — Griash23 Ltd, Aldershot UK (Sep 2024 – Present)
-   Built and maintains multi-pub MERN stack websites. Handles content management, digital marketing, and hosting.
+   Hospitality group with two pub venues. Dual role covering full-stack web development and marketing.
+   Web: Built and maintains MERN stack websites for both pub brands, including events, menus, galleries, and hosting.
+   Marketing: Manages all digital and print content end-to-end — social media strategy, photography, videography, short-form video (reels), graphic design (Adobe/Canva), poster/menu/flyer design, photoshoot coordination, and community engagement.
+   Writes on-brand copy and schedules posts to grow and nurture online communities across both brands.
 
 2. MIS Officer & Web Technology Lecturer — Hetauda School of Management, Nepal (Feb 2021 – Feb 2024)
    Implemented Moodle LMS during pandemic. Managed MIS for UGC certification. Taught web technologies (PHP, Java). Mentored students on real-world projects.
