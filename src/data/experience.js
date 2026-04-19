@@ -1,27 +1,67 @@
 export const experiences = [
   {
-    company: "Acme Labs",
-    role: "Full-Stack Developer (MERN)",
-    period: "Jan 2024 – Present",
-    location: "Remote",
+    company: 'Griash23 Ltd',
+    role: 'Web Developer & Marketing Manager',
+    period: 'Sep 2024 – Present',
+    location: 'Aldershot, UK',
     highlights: [
-      "Designed and shipped a multi-tenant analytics platform; reduced query time by 60%.",
-      "Led migration to React Query + code-splitting for 35% faster TTI.",
-      "Built secure auth (JWT + refresh) and RBAC for 3 roles."
+      'Built and maintain multi-pub websites using the MERN stack (MongoDB, Express, React, Node.js).',
+      'Handle full content management, digital marketing, and SEO across multiple pub brands.',
+      'Provide end-to-end technical support — from feature development to deployment and hosting.',
     ],
-    tech: ["MongoDB", "Express", "React", "Node.js", "Docker", "Redis"],
-    links: [{ label: "Site", href: "https://example.com" }, { label: "Repo", href: "https://github.com/you/app" }]
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+    links: [],
   },
   {
-    company: "PixelForge",
-    role: "Frontend Engineer",
-    period: "Jun 2022 – Dec 2023",
-    location: "Kathmandu, NP",
+    company: 'Hetauda School of Management and Social Sciences',
+    role: 'MIS Officer & Web Technology Lecturer',
+    period: 'Feb 2021 – Feb 2024',
+    location: 'Hetauda, Nepal',
     highlights: [
-      "Developed a component library with Tailwind, lowering UI delivery time by ~45%.",
-      "Implemented accessibility and Lighthouse 95+ across product surfaces."
+      'Implemented an LMS during the pandemic to support remote teaching and learning with management insight reports for data-driven decision-making.',
+      'Managed and optimised the MIS system — a key factor in achieving UGC certification.',
+      'Developed and delivered a web technologies curriculum covering Java, PHP, and modern tooling.',
+      'Mentored students on real-world projects; trained staff on MIS usage across the institution.',
     ],
-    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
-    links: [{ label: "Case Study", href: "/projects/saas-analytics" }]
-  }
+    tech: ['PHP', 'Java', 'MySQL', 'LMS'],
+    links: [],
+  },
+  {
+    company: 'Softweb Developers',
+    role: 'Lead Developer (Contract)',
+    period: 'Jun 2020 – Dec 2020',
+    location: 'Remote',
+    highlights: [
+      'Led development of a web application for an insurance agency to digitalise documentation and e-signature workflows.',
+      'Implemented multi-role access for company staff, agents, and clients using Spring Boot.',
+      'Delivered the full contract on schedule, replacing a manual paper-based process.',
+    ],
+    tech: ['Java', 'Spring Boot', 'MySQL'],
+    links: [],
+  },
+  {
+    company: 'Autar Fresh Pvt Ltd',
+    role: 'CTO',
+    period: 'Apr 2019 – May 2020',
+    location: 'Hetauda, Nepal',
+    highlights: [
+      'Served as CTO for a green vegetable retail chain operating multiple franchise locations.',
+      'Designed and implemented software and hardware systems to support day-to-day operations.',
+      'Provided ongoing technical support and training across all franchise sites.',
+    ],
+    tech: ['Operations Software', 'Hardware Setup', 'Networking'],
+    links: [],
+  },
+  {
+    company: 'Investfly',
+    role: 'Java Developer',
+    period: 'Feb 2018 – Mar 2019',
+    location: 'Remote (US-based startup)',
+    highlights: [
+      'Developed backend features as part of a team building a stock-trading automation platform.',
+      'Built and maintained Spring Boot services handling trading logic and user data.',
+    ],
+    tech: ['Java', 'Spring Boot', 'REST APIs'],
+    links: [],
+  },
 ]

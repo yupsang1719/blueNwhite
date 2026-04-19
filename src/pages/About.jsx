@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FiDownload, FiArrowRight, FiCode } from 'react-icons/fi'
+
 import {
   SiReact, SiVite, SiTailwindcss, SiFramer,
   SiNodedotjs, SiExpress, SiMongodb, SiMongoose, SiJsonwebtokens,
-  SiDocker, SiNginx, SiGithubactions, SiVercel,
-  SiGit, SiPostman, SiFigma,
+  SiStripe, SiAmazons3,
+  SiDocker, SiNginx, SiLinux, SiVercel,
+  SiGit, SiPostman, SiSpring,
 } from 'react-icons/si'
 import ExperienceSection from '../components/ExperienceSection'
 import SkillPill from '../components/SkillPill'
@@ -20,30 +22,32 @@ const CATEGORY_META = {
 
 const skills = {
   Frontend: [
-    { name: 'React',          level: 5, icon: SiReact },
-    { name: 'Vite',           level: 4, icon: SiVite },
-    { name: 'Tailwind CSS',   level: 5, icon: SiTailwindcss },
-    { name: 'Framer Motion',  level: 4, icon: SiFramer },
-    { name: 'React Router',   level: 5, icon: SiReact },
+    { name: 'React',         level: 5, icon: SiReact },
+    { name: 'Vite',          level: 4, icon: SiVite },
+    { name: 'Tailwind CSS',  level: 5, icon: SiTailwindcss },
+    { name: 'Framer Motion', level: 4, icon: SiFramer },
+    { name: 'React Router',  level: 5, icon: SiReact },
   ],
   Backend: [
     { name: 'Node.js',  level: 5, icon: SiNodedotjs },
     { name: 'Express',  level: 5, icon: SiExpress },
-    { name: 'MongoDB',  level: 4, icon: SiMongodb },
+    { name: 'MongoDB',  level: 5, icon: SiMongodb },
     { name: 'Mongoose', level: 4, icon: SiMongoose },
-    { name: 'JWT/Auth', level: 4, icon: SiJsonwebtokens },
+    { name: 'JWT/Auth', level: 5, icon: SiJsonwebtokens },
+    { name: 'Stripe',   level: 4, icon: SiStripe },
+    { name: 'AWS S3',   level: 3, icon: SiAmazons3 },
   ],
   DevOps: [
-    { name: 'Docker',              level: 3, icon: SiDocker },
-    { name: 'NGINX',               level: 3, icon: SiNginx },
-    { name: 'GitHub Actions',      level: 3, icon: SiGithubactions },
-    { name: 'Vercel / Render',     level: 3, icon: SiVercel },
+    { name: 'NGINX',          level: 4, icon: SiNginx },
+    { name: 'VPS / Linux',    level: 4, icon: SiLinux },
+    { name: 'Docker',         level: 3, icon: SiDocker },
+    { name: 'Vercel / Render',level: 3, icon: SiVercel },
   ],
   Tools: [
-    { name: 'Git',     level: 5, icon: SiGit },
-    { name: 'Postman', level: 4, icon: SiPostman },
-    { name: 'VS Code', level: 5, icon: FiCode },
-    { name: 'Figma',   level: 3, icon: SiFigma },
+    { name: 'Git',             level: 5, icon: SiGit },
+    { name: 'Postman',         level: 4, icon: SiPostman },
+    { name: 'VS Code',         level: 5, icon: FiCode },
+    { name: 'Spring Boot',     level: 4, icon: SiSpring },
   ],
 }
 
