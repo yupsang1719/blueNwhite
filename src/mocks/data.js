@@ -31,6 +31,36 @@ export const projects = [
   },
 
   {
+    slug: 'bluenwhite-portfolio',
+    githubRepo: 'blueNwhite',
+    title: 'BlueNwhite — Portfolio',
+    summary: 'Personal developer portfolio built with React 19, Vite, and Tailwind CSS. Live at bluenwhite.co.uk — deployed on a VPS with NGINX and Certbot SSL.',
+    problem:
+      'Needed a professional portfolio that goes beyond a template — one that accurately represents my stack, showcases real projects with context, and gives recruiters a fast, clear picture of what I build and how I think.',
+    solution:
+      'Built a React 19 SPA with Vite for instant builds, Tailwind CSS for utility-first styling, and Framer Motion for smooth page transitions and scroll animations. Mock Service Worker (MSW) handles API-style data in development while static imports serve production. EmailJS powers the contact form without a backend. Deployed on a Ubuntu VPS with NGINX serving the SPA and Certbot providing HTTPS.',
+    impact:
+      'Live portfolio at bluenwhite.co.uk — used actively in job applications. Demonstrates full-stack thinking, deployment confidence, and attention to UI/UX detail.',
+    type: 'Personal Project',
+    status: 'Live',
+    timeline: '2025',
+    role: 'Solo Full-Stack Developer',
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Framer Motion', 'NGINX'],
+    repoUrl: 'https://github.com/yupsang1719/blueNwhite',
+    liveUrl: 'https://bluenwhite.co.uk',
+    features: [
+      'React 19 SPA with Vite and hot module replacement',
+      'Tailwind CSS dark mode with localStorage + system preference',
+      'Framer Motion page animations and staggered card reveals',
+      'EmailJS contact form — no backend required',
+      'MSW mock data layer with static import fallback for production',
+      'GitHub API integration for live repo stats (stars, forks, language)',
+      'Deployed on Ubuntu VPS with NGINX and Certbot SSL',
+      'Fully responsive across mobile, tablet, and desktop',
+    ],
+  },
+
+  {
     slug: 'tracks-web',
     githubRepo: 'tracksWeb',
     title: 'Tracks Venue',
