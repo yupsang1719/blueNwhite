@@ -32,9 +32,10 @@ Content & Marketing: Social media management, short-form video (reels), graphic 
    - Deployed on Ubuntu VPS with NGINX and Certbot SSL. EmailJS for contact form.
    - GitHub: github.com/yupsang1719/blueNwhite
 
-3. Tracks Venue (github.com/yupsang1719/tracksWeb)
+3. Tracks Venue (Live — tracksaldershot.co.uk)
    - Full-stack event venue platform. Stripe ticketing, PDF ticket generation, JWT auth.
    - Tech: React, Node.js, Express, MongoDB, Stripe, Nodemailer, Multer
+   - GitHub: github.com/yupsang1719/tracksWeb
 
 4. Bull & Barkham (github.com/yupsang1719/bullBarkham)
    - Bar and events venue site. Stripe reservations, Zustand cart, JWT auth, event gallery.

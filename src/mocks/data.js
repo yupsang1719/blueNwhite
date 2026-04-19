@@ -77,7 +77,7 @@ export const projects = [
     role: 'Full-Stack Developer',
     tech: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe', 'JWT'],
     repoUrl: 'https://github.com/yupsang1719/tracksWeb',
-    liveUrl: null,
+    liveUrl: 'https://tracksaldershot.co.uk',
     features: [
       'Stripe checkout for ticket purchases',
       'PDF ticket generation with jsPDF + auto-table',
