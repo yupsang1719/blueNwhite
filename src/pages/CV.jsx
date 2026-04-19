@@ -155,10 +155,12 @@ export default function CV() {
             Full-Stack Web Developer
           </p>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-neutral-600 dark:text-neutral-300 text-neutral-700">
-            Full-stack developer with 6+ years across enterprise Java, education tech, and modern MERN SaaS.
-            Currently building BarBooks — a live SaaS product with paying clients — while working as Web Developer
-            & Marketing Manager at a hospitality group in Aldershot. Open to full-stack, web developer, or hybrid
-            technical/marketing roles.
+            Building BarBooks — a live SaaS with 2 paying UK pub clients — while working as Full-Stack Developer
+            & Marketing Manager at a hospitality group in Aldershot. 6+ years across enterprise Java, education
+            tech, and modern MERN SaaS. Open to full-stack, web developer, or hybrid technical/marketing roles.
+          </p>
+          <p className="mt-2 text-sm text-neutral-500 dark:text-neutral-400 text-neutral-500">
+            Right to work in the UK · Spouse visa (unrestricted) · No sponsorship required
           </p>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
             {contact.map(({ icon: Icon, label, href }) => (
