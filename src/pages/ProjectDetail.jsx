@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import api from '../shared/api'
+import { fetchProject } from '../shared/projects'
 import { useDarkMode } from '../shared/useDarkMode'
 import { fetchRepo } from '../shared/github'
 import GithubStats from '../components/GithubStats'
@@ -96,7 +96,8 @@ export default function ProjectDetail() {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await api.get(`/api/projects/${slug}`)
+        const data = await fetchProject(slug)
+        if (!data) throw new Error('Not found')
         setProject(data)
         // Fetch GitHub stats in parallel, non-blocking
         if (data.githubRepo) {

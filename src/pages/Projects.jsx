@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import api from '../shared/api'
+import { fetchProjects } from '../shared/projects'
 import ProjectCardVSCode from '../components/ProjectCardVSCode'
 
 const containerVariants = {
@@ -45,8 +45,8 @@ export default function Projects() {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await api.get('/api/projects')
-        setItems(data.items || data)
+        const items = await fetchProjects()
+        setItems(items)
       } catch {
         setError('Failed to load projects.')
       } finally {

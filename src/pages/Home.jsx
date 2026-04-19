@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import api from '../shared/api'
+import { fetchProjects } from '../shared/projects'
 import ProjectCardVSCode from '../components/ProjectCardVSCode'
 import ExperienceSection from '../components/ExperienceSection'
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si'
@@ -32,8 +32,8 @@ export default function Home() {
   useEffect(() => {
     ;(async () => {
       try {
-        const { data } = await api.get('/api/projects?limit=2')
-        setProjects(data.items?.slice(0, 2) || data.slice(0, 2))
+        const items = await fetchProjects(2)
+        setProjects(items)
       } catch {
         setError('Failed to load projects.')
       } finally {
