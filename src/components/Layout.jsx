@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Outlet, Link, NavLink, useLocation } from 'react-router-dom'
 import { FiSun, FiMoon, FiGithub, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi'
 import { useDarkMode } from '../shared/useDarkMode'
+import AskBirash from './AskBirash'
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -116,6 +117,8 @@ export default function Layout() {
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
         <Outlet />
       </main>
+
+      <AskBirash />
 
       <footer className="border-t py-6 dark:border-neutral-800">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
