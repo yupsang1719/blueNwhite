@@ -1,38 +1,50 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiMessageSquare, FiX, FiSend } from 'react-icons/fi'
+import { FiX, FiSend, FiZap } from 'react-icons/fi'
 
 const API_URL = import.meta.env.VITE_CHAT_API_URL || 'https://bluenwhite.co.uk/api/chat'
 
 const SUGGESTED = [
-  "What's his tech stack?",
-  "Has he shipped real products?",
-  "What's his experience level?",
-  "Is he available to hire?",
+  "Is he available now?",
+  "What has he built?",
+  "What's his strongest skill?",
+  "Has he worked in a team?",
 ]
 
 const GREETING = {
   role: 'assistant',
-  content: "Hi! I'm an AI assistant for Birash's portfolio. Ask me anything about his experience, projects, or skills — I'll answer instantly.",
+  content: "Hi! I'm an AI assistant for Birash's portfolio. I can answer questions about his experience, projects, availability, and skills — instantly.",
 }
 
 export default function AskBirash() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]         = useState(false)
+  const [visible, setVisible]   = useState(false)   // delayed appearance
+  const [expanded, setExpanded] = useState(true)    // pill vs icon
   const [messages, setMessages] = useState([GREETING])
-  const [input, setInput] = useState('')
-  const [loading, setLoading] = useState(false)
-  const bottomRef = useRef(null)
-  const inputRef = useRef(null)
+  const [input, setInput]       = useState('')
+  const [loading, setLoading]   = useState(false)
+  const bottomRef  = useRef(null)
+  const inputRef   = useRef(null)
 
-  // Scroll to latest message
+  // Slide in after 3s, collapse pill to icon after 8s
+  useEffect(() => {
+    const showTimer     = setTimeout(() => setVisible(true),    3000)
+    const collapseTimer = setTimeout(() => setExpanded(false),  8000)
+    return () => { clearTimeout(showTimer); clearTimeout(collapseTimer) }
+  }, [])
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
-  // Focus input when opened
   useEffect(() => {
     if (open) setTimeout(() => inputRef.current?.focus(), 200)
   }, [open])
+
+  function handleOpen() {
+    setOpen(true)
+    setExpanded(false) // collapse pill once clicked
+  }
 
   async function send(text) {
     const userMsg = text || input.trim()
@@ -47,7 +59,11 @@ export default function AskBirash() {
       const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: next.filter(m => m.role !== 'assistant' || m !== GREETING) }),
+        body: JSON.stringify({
+          messages: next
+            .filter(m => !(m.role === 'assistant' && m === GREETING))
+            .slice(-10)
+        }),
       })
       const data = await res.json()
       setMessages(prev => [...prev, {
@@ -68,28 +84,40 @@ export default function AskBirash() {
 
   return (
     <>
-      {/* Floating button */}
-      <motion.button
-        onClick={() => setOpen(o => !o)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={open ? 'Close chat' : 'Ask about Birash'}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center
-          rounded-full bg-primary-600 text-white shadow-lg shadow-primary-600/30
-          transition hover:bg-primary-700"
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={open ? 'x' : 'chat'}
-            initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
-            animate={{ opacity: 1, rotate: 0, scale: 1 }}
-            exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
-            transition={{ duration: 0.15 }}
+      {/* Floating trigger button */}
+      <AnimatePresence>
+        {visible && !open && (
+          <motion.button
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            onClick={handleOpen}
+            onMouseEnter={() => setExpanded(true)}
+            onMouseLeave={() => setExpanded(false)}
+            aria-label="Ask about Birash"
+            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 overflow-hidden
+              rounded-full bg-primary-600 text-white shadow-lg shadow-primary-600/30
+              transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:shadow-primary-600/40"
+            style={{ padding: expanded ? '0.625rem 1.25rem' : '0.875rem' }}
           >
-            {open ? <FiX size={22} /> : <FiMessageSquare size={22} />}
-          </motion.span>
-        </AnimatePresence>
-      </motion.button>
+            <FiZap size={18} className="shrink-0" />
+            <AnimatePresence>
+              {expanded && (
+                <motion.span
+                  initial={{ opacity: 0, width: 0 }}
+                  animate={{ opacity: 1, width: 'auto' }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="whitespace-nowrap text-sm font-medium overflow-hidden"
+                >
+                  Ask about Birash
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Chat window */}
       <AnimatePresence>
@@ -99,20 +127,30 @@ export default function AskBirash() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="fixed bottom-24 right-6 z-50 flex w-[calc(100vw-3rem)] max-w-sm flex-col
+            className="fixed bottom-6 right-6 z-50 flex w-[calc(100vw-3rem)] max-w-sm flex-col
               overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl
               dark:border-neutral-700 dark:bg-neutral-900"
-            style={{ maxHeight: '70vh' }}
+            style={{ maxHeight: '72vh' }}
           >
             {/* Header */}
-            <div className="flex items-center gap-3 border-b bg-primary-600 px-4 py-3 dark:border-neutral-700">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-sm font-bold text-white">
-                B
+            <div className="flex items-center justify-between border-b border-primary-700 bg-primary-600 px-4 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+                  <FiZap size={16} className="text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white">Ask about Birash</p>
+                  <p className="text-[11px] text-primary-200">AI assistant · answers instantly</p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-white">Ask about Birash</p>
-                <p className="text-[11px] text-primary-200">Powered by Claude AI</p>
-              </div>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close chat"
+                className="grid h-7 w-7 place-items-center rounded-lg text-primary-200
+                  transition hover:bg-white/10 hover:text-white"
+              >
+                <FiX size={16} />
+              </button>
             </div>
 
             {/* Messages */}
@@ -186,13 +224,16 @@ export default function AskBirash() {
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
-                  className="grid h-9 w-9 place-items-center rounded-xl bg-primary-600 text-white
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary-600 text-white
                     transition hover:bg-primary-700 disabled:opacity-40"
                   aria-label="Send"
                 >
                   <FiSend size={15} />
                 </button>
               </form>
+              <p className="mt-2 text-center text-[10px] text-neutral-400 dark:text-neutral-600">
+                Powered by Claude AI · For professional enquiries only
+              </p>
             </div>
           </motion.div>
         )}
