@@ -60,6 +60,10 @@ Content & Marketing: Social media management, short-form video (reels), graphic 
 5. Java Developer — Investfly, US-based startup (Feb 2018 – Mar 2019, Remote)
    Backend features for a stock-trading automation platform using Spring Boot.
 
+--- EDUCATION ---
+Bachelor's Degree in Information Technology
+College of Information and Technology, Kathmandu, Tinkune, Nepal (Feb 2015 – Apr 2019)
+
 --- PERSONALITY & APPROACH ---
 - Birash is self-driven, ships real products (BarBooks has paying clients), and cares deeply about UX.
 - He has a broad background: enterprise Java → teaching/MIS → modern MERN stack.

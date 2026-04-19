@@ -236,6 +236,24 @@ export default function CV() {
           </div>
         </section>
 
+        {/* Education */}
+        <section className="mb-8">
+          <h2 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-neutral-400 text-neutral-500">
+            Education
+          </h2>
+          <div className="grid grid-cols-[1fr_auto] gap-x-4">
+            <div>
+              <p className="font-semibold text-neutral-900 dark:text-white text-neutral-900">
+                Bachelor's Degree in Information Technology
+              </p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400 text-neutral-600">
+                College of Information and Technology · Kathmandu, Tinkune, Nepal
+              </p>
+            </div>
+            <p className="shrink-0 text-right text-xs text-neutral-400 text-neutral-500">Feb 2015 – Apr 2019</p>
+          </div>
+        </section>
+
         {/* Footer note */}
         <p className="text-center text-xs text-neutral-400 text-neutral-500">
           References available on request · Aldershot, UK · Open to remote and on-site roles

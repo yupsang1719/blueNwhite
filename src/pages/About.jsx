@@ -251,6 +251,33 @@ export default function About() {
 
       {/* Experience timeline */}
       <ExperienceSection />
+
+      {/* Education */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto mt-10 w-full max-w-5xl"
+      >
+        <h2 className="mb-4 text-2xl font-semibold">Education</h2>
+        <div className="rounded-2xl border bg-white/70 p-5 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60">
+          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="font-semibold text-neutral-900 dark:text-white">
+                Bachelor's Degree in Information Technology
+              </p>
+              <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
+                College of Information and Technology · Kathmandu, Tinkune, Nepal
+              </p>
+            </div>
+            <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-500
+                             dark:bg-neutral-800 dark:text-neutral-400 sm:mt-0">
+              Feb 2015 – Apr 2019
+            </span>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }
