@@ -214,7 +214,7 @@ export default function Home() {
         )}
       </div>
       {/* ===== Experience ===== */}
-      <ExperienceSection />
+      <ExperienceSection limit={3} />
     </section>
   )
 }

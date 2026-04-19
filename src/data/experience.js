@@ -4,6 +4,7 @@ export const experiences = [
     role: 'Web Developer & Marketing Manager',
     period: 'Sep 2024 – Present',
     location: 'Aldershot, UK',
+    current: true,
     highlights: [
       'Built and maintain multi-pub websites using the MERN stack (MongoDB, Express, React, Node.js).',
       'Handle full content management, digital marketing, and SEO across multiple pub brands.',
@@ -13,17 +14,16 @@ export const experiences = [
     links: [],
   },
   {
-    company: 'Hetauda School of Management and Social Sciences',
+    company: 'Hetauda School of Management',
     role: 'MIS Officer & Web Technology Lecturer',
     period: 'Feb 2021 – Feb 2024',
     location: 'Hetauda, Nepal',
     highlights: [
-      'Implemented an LMS during the pandemic to support remote teaching and learning with management insight reports for data-driven decision-making.',
-      'Managed and optimised the MIS system — a key factor in achieving UGC certification.',
-      'Developed and delivered a web technologies curriculum covering Java, PHP, and modern tooling.',
-      'Mentored students on real-world projects; trained staff on MIS usage across the institution.',
+      'Implemented a Moodle LMS during the pandemic — enabled remote teaching with insight reports for management decision-making.',
+      'Managed the MIS system, a key factor in achieving UGC certification.',
+      'Developed and delivered a web technologies curriculum; mentored students on real-world projects.',
     ],
-    tech: ['PHP', 'Java', 'MySQL', 'LMS'],
+    tech: ['PHP', 'Java', 'MySQL', 'Moodle'],
     links: [],
   },
   {
@@ -32,9 +32,8 @@ export const experiences = [
     period: 'Jun 2020 – Dec 2020',
     location: 'Remote',
     highlights: [
-      'Led development of a web application for an insurance agency to digitalise documentation and e-signature workflows.',
+      'Led development of a web app for an insurance agency to digitalise documentation and e-signature workflows.',
       'Implemented multi-role access for company staff, agents, and clients using Spring Boot.',
-      'Delivered the full contract on schedule, replacing a manual paper-based process.',
     ],
     tech: ['Java', 'Spring Boot', 'MySQL'],
     links: [],
@@ -45,11 +44,9 @@ export const experiences = [
     period: 'Apr 2019 – May 2020',
     location: 'Hetauda, Nepal',
     highlights: [
-      'Served as CTO for a green vegetable retail chain operating multiple franchise locations.',
-      'Designed and implemented software and hardware systems to support day-to-day operations.',
-      'Provided ongoing technical support and training across all franchise sites.',
+      'Oversaw tech for a multi-franchise green vegetable retail chain — implemented POS, networking, and hardware across all sites.',
     ],
-    tech: ['Operations Software', 'Hardware Setup', 'Networking'],
+    tech: ['Linux', 'Networking', 'POS Systems'],
     links: [],
   },
   {
@@ -58,10 +55,10 @@ export const experiences = [
     period: 'Feb 2018 – Mar 2019',
     location: 'Remote (US-based startup)',
     highlights: [
-      'Developed backend features as part of a team building a stock-trading automation platform.',
-      'Built and maintained Spring Boot services handling trading logic and user data.',
+      'Built backend features as part of a team developing a stock-trading automation platform.',
+      'Maintained Spring Boot services handling trading logic and user data.',
     ],
-    tech: ['Java', 'Spring Boot', 'REST APIs'],
+    tech: ['Java', 'Spring Boot', 'MySQL'],
     links: [],
   },
 ]
