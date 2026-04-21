@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { fetchProjects } from '../shared/projects'
-import ProjectCardVSCode from '../components/ProjectCardVSCode'
+import ProjectCardClean from '../components/ProjectCardClean'
 import ExperienceSection from '../components/ExperienceSection'
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si'
 import SkillsMarquee from '../components/SkillsMarquee'
@@ -187,21 +187,17 @@ export default function Home() {
         {loading && (
           <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
             {[0, 1].map(i => (
-              <div key={i} className="overflow-hidden rounded-2xl border border-neutral-200 bg-white/90 dark:border-neutral-800 dark:bg-neutral-900/70 animate-pulse">
-                <div className="flex items-center gap-2 border-b border-neutral-200/80 px-3 py-2.5 dark:border-neutral-800/80">
-                  <span className="h-2.5 w-2.5 rounded-full bg-neutral-200 dark:bg-neutral-700" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-neutral-200 dark:bg-neutral-700" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-neutral-200 dark:bg-neutral-700" />
-                  <span className="ml-2 h-4 w-32 rounded bg-neutral-100 dark:bg-neutral-800" />
-                </div>
-                <div className="space-y-2 p-4">
-                  <div className="h-3 w-3/4 rounded bg-neutral-100 dark:bg-neutral-800" />
+              <div key={i} className="animate-pulse overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900/80">
+                <div className="h-48 bg-neutral-100 dark:bg-neutral-800" />
+                <div className="p-5 space-y-3">
+                  <div className="h-3 w-1/3 rounded bg-neutral-100 dark:bg-neutral-800" />
+                  <div className="h-4 w-1/2 rounded bg-neutral-100 dark:bg-neutral-800" />
                   <div className="h-3 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="h-3 w-5/6 rounded bg-neutral-100 dark:bg-neutral-800" />
-                </div>
-                <div className="flex gap-2 border-t border-neutral-200/80 p-3 dark:border-neutral-800/80">
-                  <span className="h-5 w-14 rounded-full bg-neutral-100 dark:bg-neutral-800" />
-                  <span className="h-5 w-16 rounded-full bg-neutral-100 dark:bg-neutral-800" />
+                  <div className="h-3 w-4/5 rounded bg-neutral-100 dark:bg-neutral-800" />
+                  <div className="flex gap-2 pt-1">
+                    <span className="h-5 w-14 rounded-md bg-neutral-100 dark:bg-neutral-800" />
+                    <span className="h-5 w-16 rounded-md bg-neutral-100 dark:bg-neutral-800" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -220,7 +216,7 @@ export default function Home() {
           >
             {projects.map((p) => (
               <motion.div key={p.slug} variants={itemVariants}>
-                <ProjectCardVSCode project={p} />
+                <ProjectCardClean project={p} />
               </motion.div>
             ))}
           </motion.div>
