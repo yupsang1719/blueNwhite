@@ -2,6 +2,40 @@ const BASE = 'https://api.github.com'
 const USERNAME = import.meta.env.VITE_GITHUB_USERNAME
 
 /**
+ * Fetch all public repos for the configured GitHub user,
+ * sorted by most recently pushed, excluding forked repos.
+ */
+export async function fetchUserRepos() {
+  if (!USERNAME || USERNAME === 'yourname') return []
+  try {
+    const res = await fetch(
+      `${BASE}/users/${USERNAME}/repos?per_page=100&sort=pushed&direction=desc`,
+      { headers: { Accept: 'application/vnd.github+json' } }
+    )
+    if (!res.ok) return []
+    const data = await res.json()
+    return data
+      .filter((r) => !r.fork)
+      .map((r) => ({
+        id:          r.id,
+        name:        r.name,
+        fullName:    r.full_name,
+        description: r.description,
+        htmlUrl:     r.html_url,
+        homepage:    r.homepage,
+        language:    r.language,
+        stars:       r.stargazers_count,
+        forks:       r.forks_count,
+        topics:      r.topics ?? [],
+        pushedAt:    r.pushed_at,
+        createdAt:   r.created_at,
+      }))
+  } catch {
+    return []
+  }
+}
+
+/**
  * Fetch a single GitHub repo's live stats.
  * Returns null gracefully on any failure (rate limit, private, 404).
  */
