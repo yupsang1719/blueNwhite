@@ -116,8 +116,8 @@ export default function Home() {
           transition={{ delay: 0.2 }}
           className="max-w-2xl text-neutral-600 dark:text-neutral-300 text-lg"
         >
-          Full-stack web developer focused on responsive, secure, data-driven apps.
-          I care about clean code, fast UX, and meaningful product impact.
+          Birash Thing is a full-stack MERN developer based in Aldershot, UK — building
+          responsive, secure, data-driven apps with clean code and meaningful product impact.
         </motion.p>
 
         {/* Call to Action */}

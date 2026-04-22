@@ -136,14 +136,14 @@ export default function About() {
         {/* Bio */}
         <div className="mt-6 max-w-2xl space-y-3 text-neutral-600 dark:text-neutral-300">
           <p>
-            Currently building BarBooks — a live SaaS with 2 paying UK pub clients — while working as
-            Full-Stack Developer & Marketing Manager at a hospitality group in Aldershot.
+            Birash Thing is currently building BarBooks — a live SaaS with 2 paying UK pub clients —
+            while working as Full-Stack Developer & Marketing Manager at a hospitality group in Aldershot, UK.
           </p>
           <p>
-            I started out in enterprise Java — building backend services for a US fintech startup and
-            leading contract development for an insurance platform. Then spent three years in education,
-            where I built an LMS from scratch during the pandemic and taught web technologies to university students.
-            Now I'm deep in the MERN stack, shipping production SaaS and client sites that people actually use.
+            Starting out in enterprise Java — building backend services for a US fintech startup and
+            leading contract development for an insurance platform — before spending three years in education
+            building an LMS from scratch and teaching web technologies to university students.
+            Now deep in the MERN stack, shipping production SaaS and client sites that people actually use.
           </p>
         </div>
 

@@ -127,9 +127,9 @@ export default function Projects() {
             className="mb-10 flex items-end justify-between"
           >
             <div>
-              <h1 className="text-3xl font-bold">Projects</h1>
+              <h1 className="text-3xl font-bold">Projects by Birash Thing</h1>
               <p className="mt-2 text-neutral-600 dark:text-neutral-300">
-                Things I've built — full-stack apps, tools, and experiments.
+                Full-stack MERN apps built by Birash Thing — SaaS platforms, event ticketing, and more.
               </p>
             </div>
             {!loading && items.length > 0 && (

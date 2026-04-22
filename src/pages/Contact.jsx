@@ -79,10 +79,10 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl font-bold">Get in Touch</h1>
+          <h1 className="text-3xl font-bold">Get in Touch with Birash Thing</h1>
           <p className="mt-2 max-w-xl text-neutral-600 dark:text-neutral-300">
-            I'm currently open to new opportunities. Whether you have a project in mind
-            or just want to say hi — my inbox is open.
+            Birash Thing is currently open to full-stack developer roles in the UK.
+            Whether you have a project in mind or just want to say hi — my inbox is open.
           </p>
         </motion.div>
 
