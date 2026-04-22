@@ -4,6 +4,7 @@ import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } fr
 import emailjs from '@emailjs/browser'
 import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 import ReactGA from 'react-ga4'
+import { Helmet } from 'react-helmet-async'
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -50,6 +51,11 @@ export default function Contact() {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Contact — Birash Thing</title>
+      <meta name="description" content="Get in touch with Birash Thing — open to full-stack developer roles in the UK. Send a message or connect on GitHub and LinkedIn." />
+    </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
@@ -195,5 +201,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   )
 }

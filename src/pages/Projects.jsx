@@ -6,6 +6,7 @@ import ProjectCardClean from '../components/ProjectCardClean'
 import RepoCard from '../components/RepoCard'
 import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 import { FiArrowRight } from 'react-icons/fi'
+import { Helmet } from 'react-helmet-async'
 
 const containerVariants = {
   hidden: {},
@@ -91,6 +92,11 @@ export default function Projects() {
   }, [])
 
   return (
+    <>
+    <Helmet>
+      <title>Projects — Birash Thing</title>
+      <meta name="description" content="Full-stack MERN projects by Birash Thing — SaaS platforms, event ticketing, pub management, and more." />
+    </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
@@ -232,5 +238,6 @@ export default function Projects() {
 
       </div>
     </section>
+    </>
   )
 }

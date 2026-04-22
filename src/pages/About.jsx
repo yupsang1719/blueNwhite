@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { FiDownload, FiArrowRight, FiCode, FiZap, FiTarget } from 'react-icons/fi'
+import { Helmet } from 'react-helmet-async'
 import {
   SiReact, SiVite, SiTailwindcss, SiFramer,
   SiNodedotjs, SiExpress, SiMongodb, SiMongoose, SiJsonwebtokens,
@@ -62,6 +63,11 @@ const item = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transiti
 
 export default function About() {
   return (
+    <>
+    <Helmet>
+      <title>About — Birash Thing</title>
+      <meta name="description" content="About Birash Thing — MERN developer with 6+ years experience across SaaS, education tech, and hospitality. Based in Aldershot, UK. Right to work, no sponsorship needed." />
+    </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
@@ -303,5 +309,6 @@ export default function About() {
         </div>
       </motion.div>
     </section>
+    </>
   )
 }

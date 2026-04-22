@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { FiDownload, FiMail, FiGithub, FiLinkedin, FiGlobe, FiLoader } from 'react-icons/fi'
 import ReactGA from 'react-ga4'
+import { Helmet } from 'react-helmet-async'
 
 const contact = [
   { icon: FiMail,     label: 'thenngbirash124@gmail.com', href: 'mailto:thenngbirash124@gmail.com' },
@@ -124,6 +125,11 @@ export default function CV() {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>CV — Birash Thing</title>
+      <meta name="description" content="CV of Birash Thing — Full-Stack MERN Developer. 6+ years experience. Right to work in the UK. Download PDF CV." />
+    </Helmet>
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
 
       {/* Toolbar */}
@@ -264,5 +270,6 @@ export default function CV() {
         </p>
       </div>
     </div>
+    </>
   )
 }

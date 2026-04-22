@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { fetchProjects } from '../shared/projects'
 import ProjectCardClean from '../components/ProjectCardClean'
 import ExperienceSection from '../components/ExperienceSection'
@@ -44,6 +45,11 @@ export default function Home() {
   }, [])
 
   return (
+    <>
+    <Helmet>
+      <title>Birash Thing — Full-Stack Web Developer</title>
+      <meta name="description" content="MERN Developer based in Aldershot, UK. Building SaaS products and web apps. Open to full-stack and web developer roles." />
+    </Helmet>
     <section className="relative overflow-hidden px-4">
 
       {/* Blue glow */}
@@ -225,5 +231,6 @@ export default function Home() {
       {/* ===== Experience ===== */}
       <ExperienceSection limit={3} />
     </section>
+    </>
   )
 }
