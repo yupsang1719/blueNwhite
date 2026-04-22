@@ -11,6 +11,7 @@ import ProjectDetail from './pages/ProjectDetail'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import CV from './pages/CV'
+import NotFound from './pages/NotFound'
 
 // --- Router setup ---
 const router = createBrowserRouter([
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       { path: 'contact', element: <Contact /> },
       { path: 'cv', element: <CV /> },
+      { path: '*', element: <NotFound /> },
     ],
   },
 ])
