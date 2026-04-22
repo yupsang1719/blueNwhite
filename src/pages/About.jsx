@@ -67,6 +67,10 @@ export default function About() {
     <Helmet>
       <title>About — Birash Thing</title>
       <meta name="description" content="About Birash Thing — MERN developer with 6+ years experience across SaaS, education tech, and hospitality. Based in Aldershot, UK. Right to work, no sponsorship needed." />
+      <link rel="canonical" href="https://bluenwhite.co.uk/about" />
+      <meta property="og:title" content="About — Birash Thing" />
+      <meta property="og:description" content="MERN developer with 6+ years experience. Based in Aldershot, UK. Right to work, no sponsorship needed." />
+      <meta property="og:url" content="https://bluenwhite.co.uk/about" />
     </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10

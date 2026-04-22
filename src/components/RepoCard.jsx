@@ -1,5 +1,6 @@
 import { FiStar, FiGitBranch, FiExternalLink, FiGithub } from 'react-icons/fi'
 import { LANG_COLORS, timeAgo } from '../shared/github'
+import ReactGA from 'react-ga4'
 
 export default function RepoCard({ repo }) {
   return (
@@ -14,18 +15,23 @@ export default function RepoCard({ repo }) {
             href={repo.htmlUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={() => ReactGA.event({ category: 'Repo', action: 'click_github', label: repo.name })}
             className="truncate font-mono text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
           >
             {repo.name}
           </a>
           <div className="flex shrink-0 items-center gap-1 text-neutral-400">
             <a href={repo.htmlUrl} target="_blank" rel="noreferrer"
-               aria-label="GitHub" className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
+               aria-label="GitHub"
+               onClick={() => ReactGA.event({ category: 'Repo', action: 'click_github', label: repo.name })}
+               className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
               <FiGithub size={15} />
             </a>
             {repo.homepage && (
               <a href={repo.homepage} target="_blank" rel="noreferrer"
-                 aria-label="Live site" className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
+                 aria-label="Live site"
+                 onClick={() => ReactGA.event({ category: 'Repo', action: 'click_live', label: repo.name })}
+                 className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
                 <FiExternalLink size={15} />
               </a>
             )}

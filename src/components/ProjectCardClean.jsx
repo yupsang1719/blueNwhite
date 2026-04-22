@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FiGithub, FiExternalLink, FiArrowUpRight } from 'react-icons/fi'
+import ReactGA from 'react-ga4'
 
 const STATUS_CONFIG = {
   'Live':           { color: 'bg-emerald-500', text: 'text-emerald-700 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-950/50' },
@@ -65,7 +66,7 @@ export default function ProjectCardClean({ project }) {
           <div className="relative z-20 flex shrink-0 items-center gap-0.5 text-neutral-400">
             {project.repoUrl && (
               <a href={project.repoUrl} target="_blank" rel="noreferrer"
-                 onClick={(e) => e.stopPropagation()}
+                 onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_github', label: project.title }) }}
                  aria-label="GitHub repo"
                  className="grid h-7 w-7 place-items-center rounded-lg transition
                             hover:bg-neutral-100 hover:text-neutral-700
@@ -75,7 +76,7 @@ export default function ProjectCardClean({ project }) {
             )}
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noreferrer"
-                 onClick={(e) => e.stopPropagation()}
+                 onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_live', label: project.title }) }}
                  aria-label="Live site"
                  className="grid h-7 w-7 place-items-center rounded-lg transition
                             hover:bg-neutral-100 hover:text-neutral-700

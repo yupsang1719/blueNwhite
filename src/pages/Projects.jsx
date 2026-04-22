@@ -7,6 +7,7 @@ import RepoCard from '../components/RepoCard'
 import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 import { FiArrowRight } from 'react-icons/fi'
 import { Helmet } from 'react-helmet-async'
+import ReactGA from 'react-ga4'
 
 const containerVariants = {
   hidden: {},
@@ -96,6 +97,10 @@ export default function Projects() {
     <Helmet>
       <title>Projects — Birash Thing</title>
       <meta name="description" content="Full-stack MERN projects by Birash Thing — SaaS platforms, event ticketing, pub management, and more." />
+      <link rel="canonical" href="https://bluenwhite.co.uk/projects" />
+      <meta property="og:title" content="Projects — Birash Thing" />
+      <meta property="og:description" content="Full-stack MERN projects by Birash Thing — SaaS platforms, event ticketing, pub management, and more." />
+      <meta property="og:url" content="https://bluenwhite.co.uk/projects" />
     </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
@@ -222,6 +227,7 @@ export default function Projects() {
                   href={`https://github.com/${import.meta.env.VITE_GITHUB_USERNAME}`}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => ReactGA.event({ category: 'Outbound', action: 'click_github_profile', label: 'View all on GitHub' })}
                   className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-5 py-2
                              text-sm font-medium text-neutral-600 shadow-sm transition
                              hover:border-neutral-300 hover:text-neutral-900 hover:shadow

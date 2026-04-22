@@ -49,6 +49,10 @@ export default function Home() {
     <Helmet>
       <title>Birash Thing — Full-Stack Web Developer</title>
       <meta name="description" content="MERN Developer based in Aldershot, UK. Building SaaS products and web apps. Open to full-stack and web developer roles." />
+      <link rel="canonical" href="https://bluenwhite.co.uk/" />
+      <meta property="og:title" content="Birash Thing — Full-Stack Web Developer" />
+      <meta property="og:description" content="MERN Developer based in Aldershot, UK. Building SaaS products and web apps. Open to full-stack and web developer roles." />
+      <meta property="og:url" content="https://bluenwhite.co.uk/" />
     </Helmet>
     <section className="relative overflow-hidden px-4">
 

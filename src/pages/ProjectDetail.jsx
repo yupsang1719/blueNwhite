@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import ReactGA from 'react-ga4'
+import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { fetchProject } from '../shared/projects'
 import { useDarkMode } from '../shared/useDarkMode'
@@ -159,6 +160,15 @@ export default function ProjectDetail() {
   ].filter(Boolean)
 
   return (
+    <>
+    <Helmet>
+      <title>{title} — Birash Thing</title>
+      <meta name="description" content={`${summary} Built by Birash Thing, Full-Stack MERN Developer.`} />
+      <meta property="og:title" content={`${title} — Birash Thing`} />
+      <meta property="og:description" content={summary} />
+      <meta property="og:url" content={`https://bluenwhite.co.uk/projects/${slug}`} />
+      <link rel="canonical" href={`https://bluenwhite.co.uk/projects/${slug}`} />
+    </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
         bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
@@ -212,7 +222,7 @@ export default function ProjectDetail() {
                 {screenshots.map((src, i) => (
                   <button
                     key={i}
-                    onClick={() => setLightbox(i)}
+                    onClick={() => { setLightbox(i); ReactGA.event({ category: 'Project', action: 'view_screenshot', label: `${title} - screenshot ${i + 1}` }) }}
                     className="group/img relative flex-none overflow-hidden rounded-xl border
                                border-neutral-200 dark:border-neutral-800 shadow-sm
                                focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -279,6 +289,7 @@ export default function ProjectDetail() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             {liveUrl && (
               <a href={liveUrl} target="_blank" rel="noreferrer"
+                onClick={() => ReactGA.event({ category: 'Project', action: 'click_live', label: title })}
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-5 py-2.5
                            text-sm font-medium text-white transition hover:bg-primary-700">
                 <FiExternalLink size={14} /> View Live
@@ -286,6 +297,7 @@ export default function ProjectDetail() {
             )}
             {repoUrl && (
               <a href={repoUrl} target="_blank" rel="noreferrer"
+                onClick={() => ReactGA.event({ category: 'Project', action: 'click_github', label: title })}
                 className="inline-flex items-center gap-2 rounded-xl border px-5 py-2.5 text-sm transition
                            hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800">
                 <FiGithub size={14} /> View Code
@@ -413,6 +425,7 @@ export default function ProjectDetail() {
         </motion.div>
       )}
     </section>
+    </>
   )
 }
 

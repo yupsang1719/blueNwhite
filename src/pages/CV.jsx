@@ -129,6 +129,10 @@ export default function CV() {
     <Helmet>
       <title>CV — Birash Thing</title>
       <meta name="description" content="CV of Birash Thing — Full-Stack MERN Developer. 6+ years experience. Right to work in the UK. Download PDF CV." />
+      <link rel="canonical" href="https://bluenwhite.co.uk/cv" />
+      <meta property="og:title" content="CV — Birash Thing" />
+      <meta property="og:description" content="CV of Birash Thing — Full-Stack MERN Developer. 6+ years experience. Right to work in the UK." />
+      <meta property="og:url" content="https://bluenwhite.co.uk/cv" />
     </Helmet>
     <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
 

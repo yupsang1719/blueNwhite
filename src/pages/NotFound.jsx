@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import ReactGA from 'react-ga4'
+import { Helmet } from 'react-helmet-async'
 
 export default function NotFound() {
   const { pathname } = useLocation()
@@ -10,6 +11,11 @@ export default function NotFound() {
   }, [pathname])
 
   return (
+    <>
+    <Helmet>
+      <title>404 — Page Not Found · Birash Thing</title>
+      <meta name="description" content="This page doesn't exist. Head back to Birash Thing's portfolio." />
+    </Helmet>
     <div className="flex flex-col items-center justify-center py-32 text-center">
       <p className="text-6xl font-bold text-primary-600">404</p>
       <h1 className="mt-4 text-2xl font-semibold">Page not found</h1>
@@ -24,5 +30,6 @@ export default function NotFound() {
         Back to Home
       </Link>
     </div>
+    </>
   )
 }

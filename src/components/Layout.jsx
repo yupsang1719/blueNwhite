@@ -5,8 +5,6 @@ import { useDarkMode } from '../shared/useDarkMode'
 import AskBirash from './AskBirash'
 import ReactGA from 'react-ga4'
 
-ReactGA.initialize('G-R7QH3V4747')
-
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
   { icon: FiLinkedin, label: 'LinkedIn',  href: 'https://linkedin.com/in/yupsang' },
@@ -28,7 +26,7 @@ export default function Layout() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    ReactGA.send({ hitType: 'pageview', page: pathname })
+    ReactGA.send({ hitType: 'pageview', page: pathname, title: document.title })
   }, [pathname])
 
   // Close mobile menu when clicking outside the header

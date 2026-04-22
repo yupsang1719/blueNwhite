@@ -45,6 +45,7 @@ export default function Contact() {
       ReactGA.event({ category: 'Contact', action: 'form_submit', label: 'Contact Form' })
     } catch {
       setError('Something went wrong. Please email me directly at thenngbirash124@gmail.com')
+      ReactGA.event({ category: 'Contact', action: 'form_error', label: 'Contact Form Failed' })
     } finally {
       setLoading(false)
     }
@@ -55,6 +56,10 @@ export default function Contact() {
     <Helmet>
       <title>Contact — Birash Thing</title>
       <meta name="description" content="Get in touch with Birash Thing — open to full-stack developer roles in the UK. Send a message or connect on GitHub and LinkedIn." />
+      <link rel="canonical" href="https://bluenwhite.co.uk/contact" />
+      <meta property="og:title" content="Contact — Birash Thing" />
+      <meta property="og:description" content="Get in touch with Birash Thing — open to full-stack developer roles in the UK." />
+      <meta property="og:url" content="https://bluenwhite.co.uk/contact" />
     </Helmet>
     <section className="relative overflow-hidden px-4 py-16">
       <div className="pointer-events-none absolute inset-0 -z-10
