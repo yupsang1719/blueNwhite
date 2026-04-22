@@ -3,6 +3,9 @@ import { Outlet, Link, NavLink, useLocation } from 'react-router-dom'
 import { FiSun, FiMoon, FiGithub, FiLinkedin, FiMail, FiMenu, FiX } from 'react-icons/fi'
 import { useDarkMode } from '../shared/useDarkMode'
 import AskBirash from './AskBirash'
+import ReactGA from 'react-ga4'
+
+ReactGA.initialize('G-R7QH3V4747')
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -25,6 +28,7 @@ export default function Layout() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    ReactGA.send({ hitType: 'pageview', page: pathname })
   }, [pathname])
 
   // Close mobile menu when clicking outside the header
