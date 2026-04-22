@@ -137,6 +137,7 @@ export default function Layout() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={label}
+                onClick={() => ReactGA.event({ category: 'Outbound', action: 'click', label })}
                 className="grid h-8 w-8 place-items-center rounded-lg border border-neutral-200 text-neutral-500
                            transition hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600
                            dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-primary-700

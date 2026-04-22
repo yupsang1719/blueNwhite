@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
+import ReactGA from 'react-ga4'
 import { motion } from 'framer-motion'
 import { fetchProject } from '../shared/projects'
 import { useDarkMode } from '../shared/useDarkMode'
@@ -101,6 +102,7 @@ export default function ProjectDetail() {
         const data = await fetchProject(slug)
         if (!data) throw new Error('Not found')
         setProject(data)
+        ReactGA.event({ category: 'Project', action: 'view', label: slug })
         // Fetch GitHub stats in parallel, non-blocking
         if (data.githubRepo) {
           setGhLoading(true)

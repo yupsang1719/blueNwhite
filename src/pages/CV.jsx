@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { FiDownload, FiMail, FiGithub, FiLinkedin, FiGlobe, FiLoader } from 'react-icons/fi'
+import ReactGA from 'react-ga4'
 
 const contact = [
   { icon: FiMail,     label: 'thenngbirash124@gmail.com', href: 'mailto:thenngbirash124@gmail.com' },
@@ -104,6 +105,7 @@ export default function CV() {
   async function downloadPDF() {
     if (generating) return
     setGenerating(true)
+    ReactGA.event({ category: 'CV', action: 'download_pdf', label: 'CV PDF Download' })
     try {
       const html2pdf = (await import('html2pdf.js')).default
       await html2pdf()

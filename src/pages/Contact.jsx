@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
 import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
+import ReactGA from 'react-ga4'
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -40,6 +41,7 @@ export default function Contact() {
       )
       setSent(true)
       setForm({ name: '', email: '', message: '' })
+      ReactGA.event({ category: 'Contact', action: 'form_submit', label: 'Contact Form' })
     } catch {
       setError('Something went wrong. Please email me directly at thenngbirash124@gmail.com')
     } finally {
