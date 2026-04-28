@@ -140,14 +140,16 @@ export default function About() {
         {/* Bio */}
         <div className="mt-6 max-w-2xl space-y-3 text-neutral-600 dark:text-neutral-300">
           <p>
-            Birash Thing is currently building BarBooks — a live SaaS with 2 paying UK pub clients —
-            while working as Full-Stack Developer & Marketing Manager at a hospitality group in Aldershot, UK.
+            Birash is currently building BarBooks — a live SaaS with 2 paying UK pub clients —
+            while working as Full-Stack Developer & Marketing Manager at a hospitality group in Aldershot.
+            He also handles admin and operations across two companies, giving him an unusually grounded
+            view of how software actually fits into a running business.
           </p>
           <p>
-            Starting out in enterprise Java — building backend services for a US fintech startup and
-            leading contract development for an insurance platform — before spending three years in education
-            building an LMS from scratch and teaching web technologies to university students.
-            Now deep in the MERN stack, shipping production SaaS and client sites that people actually use.
+            His background spans enterprise Java at a US fintech startup, contract development for an insurance
+            platform, three years building an LMS and teaching web technologies at a Nepali university, and now
+            shipping production MERN SaaS. Outside development, he is currently enrolled in the NEBDN Level 3
+            Diploma in Dental Nursing — a reflection of a genuinely curious, multi-track professional.
           </p>
         </div>
 
@@ -284,7 +286,7 @@ export default function About() {
       </div>
 
       {/* Experience timeline */}
-      <ExperienceSection />
+      <ExperienceSection types={['dev']} />
 
       {/* Education */}
       <motion.div
@@ -295,20 +297,47 @@ export default function About() {
         className="mx-auto mt-10 w-full max-w-5xl"
       >
         <h2 className="mb-4 text-2xl font-semibold">Education</h2>
-        <div className="rounded-2xl border bg-white/70 p-5 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60">
-          <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="font-semibold text-neutral-900 dark:text-white">
-                Bachelor's Degree in Information Technology
-              </p>
-              <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
-                College of Information and Technology · Kathmandu, Tinkune, Nepal
-              </p>
+        <div className="space-y-3">
+          <div className="rounded-2xl border bg-white/70 p-5 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60">
+            <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="font-semibold text-neutral-900 dark:text-white">
+                  Bachelor's Degree in Information Technology
+                </p>
+                <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
+                  College of Information and Technology · Kathmandu, Nepal
+                </p>
+              </div>
+              <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-500
+                               dark:bg-neutral-800 dark:text-neutral-400 sm:mt-0">
+                Feb 2015 – Apr 2019
+              </span>
             </div>
-            <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-500
-                             dark:bg-neutral-800 dark:text-neutral-400 sm:mt-0">
-              Feb 2015 – Apr 2019
-            </span>
+          </div>
+
+          <div className="rounded-2xl border border-violet-200/60 bg-violet-50/40 p-5 backdrop-blur-sm
+                          dark:border-violet-900/30 dark:bg-violet-950/10">
+            <div className="flex flex-col gap-0.5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <div className="flex items-center gap-2">
+                  <p className="font-semibold text-neutral-900 dark:text-white">
+                    Level 3 Diploma in Dental Nursing (NEBDN)
+                  </p>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2 py-0.5
+                                   text-[11px] font-medium text-violet-700 dark:bg-violet-950/50 dark:text-violet-400">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-500" />
+                    Enrolled
+                  </span>
+                </div>
+                <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
+                  Everest Education · UK
+                </p>
+              </div>
+              <span className="mt-1 shrink-0 rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-500
+                               dark:bg-neutral-800 dark:text-neutral-400 sm:mt-0">
+                Jan 2026 – Present
+              </span>
+            </div>
           </div>
         </div>
       </motion.div>

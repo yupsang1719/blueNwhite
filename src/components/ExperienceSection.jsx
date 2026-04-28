@@ -21,8 +21,9 @@ const BADGE_COLORS = [
   'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300',
 ]
 
-export default function ExperienceSection({ limit }) {
-  const list = limit ? experiences.slice(0, limit) : experiences
+export default function ExperienceSection({ limit, types }) {
+  let list = types ? experiences.filter(e => types.includes(e.type)) : experiences
+  if (limit) list = list.slice(0, limit)
 
   return (
     <section className="relative mx-auto w-full max-w-5xl py-16">
