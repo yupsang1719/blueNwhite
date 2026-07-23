@@ -13,9 +13,12 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import CV from './pages/CV'
 import NotFound from './pages/NotFound'
+import Admin from './pages/Admin'
 
 // --- Router setup ---
 const router = createBrowserRouter([
+  // Admin — outside Layout, no nav/footer
+  { path: '/admin', element: <Admin /> },
   {
     path: '/',
     element: <Layout />,

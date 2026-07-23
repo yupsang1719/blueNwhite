@@ -1,8 +1,18 @@
+import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import Anthropic from '@anthropic-ai/sdk'
 import { SYSTEM_PROMPT } from './context.js'
+import { connectDB } from './db.js'
+import { adminAuth } from './middleware/adminAuth.js'
+import contactRoutes from './routes/contacts.js'
+import listRoutes from './routes/lists.js'
+import templateRoutes from './routes/templates.js'
+import campaignRoutes from './routes/campaigns.js'
+import scraperRoutes from './routes/scraper.js'
+import Contact from './models/Contact.js'
+import { verifyToken } from './shared/unsubscribeToken.js'
 
 const app = express()
 const PORT = process.env.PORT || 4001
@@ -63,6 +73,35 @@ app.post('/api/chat', async (req, res) => {
   }
 })
 
+app.use('/api/admin/contacts', adminAuth, contactRoutes)
+app.use('/api/admin/lists', adminAuth, listRoutes)
+app.use('/api/admin/campaigns', adminAuth, campaignRoutes)
+app.use('/api/admin/scraper', adminAuth, scraperRoutes)
+// Template listing + preview are read-only and not sensitive — no auth needed
+app.use('/api/admin/templates', adminAuth, templateRoutes) // kept for existing API calls
+app.use('/api/templates', templateRoutes)                  // public — used by preview iframes
+
+// Public unsubscribe — linked from every email footer
+app.get('/unsubscribe', async (req, res) => {
+  const { id, token } = req.query
+  if (!id || !token) return res.status(400).send('Invalid unsubscribe link.')
+
+  try {
+    if (!verifyToken(id, token)) return res.status(403).send('Invalid or expired link.')
+
+    await Contact.findByIdAndUpdate(id, { unsubscribed: true })
+
+    res.send(`<!DOCTYPE html><html><body style="font-family:Arial,sans-serif;text-align:center;padding:60px;">
+      <h2 style="color:#1d4ed8;">You've been unsubscribed.</h2>
+      <p style="color:#6b7280;">You won't receive any more emails from Birash Thing.</p>
+    </body></html>`)
+  } catch {
+    res.status(500).send('Something went wrong. Please try again.')
+  }
+})
+
 app.get('/health', (_req, res) => res.json({ ok: true }))
 
-app.listen(PORT, () => console.log(`Chat API running on port ${PORT}`))
+connectDB()
+  .then(() => app.listen(PORT, () => console.log(`Chat API running on port ${PORT}`)))
+  .catch(err => { console.error('DB connection failed:', err.message); process.exit(1) })

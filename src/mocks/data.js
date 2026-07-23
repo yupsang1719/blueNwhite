@@ -1,5 +1,44 @@
 export const projects = [
   {
+    slug: 'octavia-dental',
+    githubRepo: 'octavia-Ae',
+    title: 'Octavia Dental Group — Multi-Branch Platform',
+    summary:
+      'Templated website platform + internal operations system for a growing UK dental group — 3 live branch sites on one codebase, plus a CQC-standard stock/inventory, equipment, and patient visit logging system shared across all locations.',
+    problem:
+      'A private dental and facial aesthetics group needed a new practice website every time it opened or rebranded a branch, without paying full price in dev time each time. It also needed to replace manual spreadsheets for stock control, equipment upkeep, and patient visit records with something that holds up to CQC inspection standards — consistently, across every branch.',
+    solution:
+      'Built a single React 19 + Vite codebase (Tailwind CSS, Framer Motion, Tiptap rich-text blog editor, React Hook Form + Zod) that renders a distinct branded site per branch — own logo, colour theme, copy, and NHS/private treatment mix — from shared components, backed by one Express + MongoDB Atlas API deployed as separate client (Vercel) and server (Railway) services. Spinning up a new branch site is a config/content change, not a rebuild. A JWT-authenticated admin area shared across branches adds a CQC-standard stock/inventory module (items, goods-in, transfers, stock counts, expiry watch), an equipment & facilities log, and patient visit tracking — giving the group an auditable trail for CQC compliance instead of paper logs.',
+    impact:
+      '3 live branch sites running today — octavia-dental.co.uk (Godalming, private + facial aesthetics), octaviahousedentalpractice.co.uk (Godalming, NHS & private), newoctaviadentalsurgery.com (Hindhead) — each on its own domain and brand identity, all served from one template. New branches roll out in a few clicks instead of a new build, and stock/equipment/visit records across all locations meet CQC record-keeping standards.',
+    screenshots: [
+      '/screenshots/octavia-1.png',
+      '/screenshots/octavia-2.png',
+      '/screenshots/octavia-3.png',
+    ],
+    type: 'Client Project',
+    status: 'Live',
+    timeline: '2025–Present',
+    role: 'Solo Full-Stack Developer',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Tailwind CSS', 'Vite'],
+    repoUrl: 'https://github.com/yupsang1719/octavia-Ae',
+    liveUrl: 'https://octavia-dental.co.uk',
+    features: [
+      'One codebase, many brands — per-branch logo, theme, copy, and NHS/private treatment config',
+      'New branch sites deployed in a few clicks as the group opens new locations',
+      'CQC-standard stock/inventory system — items, goods-in, transfers, stock counts, expiry watch',
+      'Equipment & facilities logging built to CQC record-keeping standards',
+      'Patient visit tracking and metrics, shared across all branches',
+      'JWT-authenticated admin panel for staff',
+      'Enquiry capture via contact forms, WhatsApp, and online booking',
+      'Blog with rich-text editing (Tiptap), categories, and SEO metadata',
+      'Before/after gallery and patient reviews',
+      'Location-targeted landing pages for local SEO (Godalming, Guildford, Haslemere, Farnham, Cranleigh, Hampshire)',
+      'Deployed as separate client (Vercel) and server (Railway) services',
+    ],
+  },
+
+  {
     slug: 'barbooks',
     githubRepo: null, // private repo
     title: 'BarBooks',
