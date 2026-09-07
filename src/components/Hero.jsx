@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion'
-import { BeeDoodle } from './BeeSketch'
 import Container from './ui/Container'
 import HairlineRule from './ui/HairlineRule'
 import EditorialLink from './ui/EditorialLink'
 
 /**
- * Full-bleed black-and-white hero — stands in for monochrome editorial
- * photography. No portrait photo — the Bee mark stands in as the personal
- * mark instead (Birash's call, not a stock substitute), paired with his
- * name in vertical katakana (ビラシュ・シング — his own confirmed reading;
- * kanji isn't used since it's a foreign name, not a native Japanese word).
+ * Full-bleed black-and-white hero. The portrait (public/headshot) is
+ * rendered through a grayscale+contrast filter to read as monochrome
+ * editorial photography rather than a casual colour snapshot, paired with
+ * his name in vertical katakana (ビラシュ・シング — his own confirmed
+ * reading; kanji isn't used since it's a foreign name, not a native
+ * Japanese word). The image's native ratio is 3:4 (450x600), matched
+ * exactly by the container so object-cover never crops it.
  * The `left-1/2 right-1/2 mx-[-50vw] w-screen` combo is the standard
  * full-bleed-inside-a-constrained-parent breakout; it only works because
  * nothing between here and the viewport clips overflow (Home.jsx keeps
@@ -72,7 +73,13 @@ export default function Hero() {
         </div>
 
         <div className="col-span-4 sm:col-span-8 lg:col-span-5 lg:col-start-8 flex items-center justify-center gap-6 lg:justify-end">
-          <BeeDoodle size={220} className="h-auto w-40 text-hero-fg/90 sm:w-56 lg:w-64" />
+          <div className="aspect-[3/4] w-48 shrink-0 overflow-hidden sm:w-64 lg:w-72">
+            <img
+              src="/headshot/IMG_1847.JPG"
+              alt="Birash Thing"
+              className="h-full w-full object-cover grayscale contrast-125"
+            />
+          </div>
           <p
             lang="ja"
             aria-hidden="true"
