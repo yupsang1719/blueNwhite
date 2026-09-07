@@ -26,6 +26,12 @@
   --color-hero-bg: #1b2447;        /* indigo backdrop / photo overlay tint */
   --color-hero-fg: #f5efe0;        /* cream type on the hero */
   --color-hero-rule: rgba(245, 239, 224, 0.35); /* hairline rule on the hero */
+  /* Same value in light and dark: --color-accent is tuned for contrast on
+     --color-paper, which flips between modes, but the hero stays a dark
+     indigo in both — measured contrast of the paper-tuned accent against
+     hero-bg was ~1.7:1 in light mode (fails WCAG's 3:1 floor for large
+     text). This is the one accent value tuned for the hero itself. */
+  --color-hero-accent: #6b7fe0;
 
   /* ---- Hairline rules (replace cards/shadows) ---- */
   --color-rule: rgba(28, 26, 23, 0.14);

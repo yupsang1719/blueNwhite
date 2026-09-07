@@ -28,6 +28,11 @@ export default {
           bg: 'var(--color-hero-bg)',
           fg: 'var(--color-hero-fg)',
           rule: 'var(--color-hero-rule)',
+          // Contrast-checked against hero.bg specifically — the general
+          // `accent` token is tuned for --color-paper instead, which fails
+          // contrast on the hero in light mode. Use this, not `accent`, for
+          // anything drawn on the hero.
+          accent: 'var(--color-hero-accent)',
         },
         rule: 'var(--color-rule)',
       },
