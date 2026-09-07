@@ -1,14 +1,18 @@
 import HairlineRule from './HairlineRule'
 
 /**
- * Editorial section header: numbered marker + eyebrow, title, optional
- * lead paragraph, hairline rule underneath. `as` picks the heading level
- * so callers can keep their page's heading order correct — this component
- * never assumes it's an h2.
+ * Editorial section header: hairline rule leading into a numbered marker +
+ * eyebrow, title, optional lead paragraph — the rule marks where each
+ * section starts (poster reference: a rule divides one section from the
+ * next, read as "section begins here" rather than "previous one ended").
+ * `as` picks the heading level so callers can keep their page's heading
+ * order correct — this component never assumes it's an h2.
  */
 export default function SectionHeader({ number, eyebrow, title, action, as: Heading = 'h2', className = '', children }) {
   return (
     <header className={className}>
+      <HairlineRule className="mb-6" />
+
       {(number != null || eyebrow) && (
         <div className="mb-3 flex items-baseline gap-3 font-display text-ed-sm tracking-ed-wide text-accent">
           {number != null && (
@@ -30,8 +34,6 @@ export default function SectionHeader({ number, eyebrow, title, action, as: Head
       {children && (
         <p className="mt-3 max-w-prose text-ed-md leading-normal text-ink-muted">{children}</p>
       )}
-
-      <HairlineRule className="mt-6" />
     </header>
   )
 }

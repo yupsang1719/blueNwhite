@@ -42,20 +42,20 @@ export default function ExperienceSection({ limit, types, number, eyebrow }) {
       >
         {list.map((xp, idx) => (
           <motion.li key={idx} variants={item}>
-            <div className="grid grid-cols-4 gap-x-6 gap-y-3 py-8 sm:grid-cols-8 lg:grid-cols-12">
-              <div className="col-span-4 sm:col-span-2 lg:col-span-2">
-                <p className="font-display text-ed-sm tabular-nums text-ink-muted">{xp.period}</p>
-                <p className="mt-1 flex items-center gap-1 text-ed-xs text-ink-muted">
-                  <FiMapPin size={11} aria-hidden="true" /> {xp.location}
-                </p>
+            <div className="grid grid-cols-4 gap-x-10 gap-y-4 py-10 sm:grid-cols-8 lg:grid-cols-12">
+              <div className="col-span-4 sm:col-span-3 lg:col-span-3">
+                <p className="font-ed-serif font-bold text-ed-lg leading-tight text-ink">{xp.role}</p>
+                <p className="mt-1 text-ed-sm text-ink-muted">{xp.company}</p>
               </div>
 
-              <div className="col-span-4 sm:col-span-6 lg:col-span-10">
+              <div className="col-span-4 sm:col-span-5 lg:col-span-9">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <div>
-                    <p className="font-display text-ed-lg text-ink">{xp.role}</p>
-                    <p className="mt-0.5 text-ed-sm text-ink-muted">{xp.company}</p>
-                  </div>
+                  <p className="flex flex-wrap items-center gap-x-2 font-display text-ed-sm tabular-nums text-ink-muted">
+                    <span>{xp.period}</span>
+                    <span className="flex items-center gap-1">
+                      <FiMapPin size={11} aria-hidden="true" /> {xp.location}
+                    </span>
+                  </p>
                   {xp.current && (
                     <span className="flex items-center gap-1.5 text-ed-xs uppercase tracking-ed-wide text-ink-muted">
                       <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />

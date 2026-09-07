@@ -38,16 +38,16 @@ function Thumb({ src, alt }) {
 /** Matches ProjectCardClean's grid exactly so nothing shifts when data arrives. */
 export function ProjectCardSkeleton() {
   return (
-    <div className="grid animate-pulse grid-cols-4 items-start gap-x-6 py-10 sm:grid-cols-8 lg:grid-cols-12">
-      <div className="hidden lg:col-span-1 lg:block">
-        <div className="h-4 w-6 rounded bg-paper-raised" />
+    <div className="grid animate-pulse grid-cols-4 items-start gap-x-10 gap-y-6 py-12 sm:grid-cols-8 lg:grid-cols-12">
+      <div className="col-span-4 space-y-2 sm:col-span-3 lg:col-span-3">
+        <div className="h-3 w-6 rounded bg-paper-raised" />
+        <div className="h-6 w-4/5 rounded bg-paper-raised" />
       </div>
-      <div className="col-span-4 sm:col-span-3 lg:col-span-4">
+      <div className="col-span-4 sm:col-span-5 lg:col-span-3">
         <div className="aspect-[4/3] w-full bg-paper-raised" />
       </div>
-      <div className="col-span-4 space-y-3 sm:col-span-5 lg:col-span-7">
+      <div className="col-span-4 space-y-3 sm:col-span-8 lg:col-span-6">
         <div className="h-3 w-1/3 rounded bg-paper-raised" />
-        <div className="h-5 w-2/3 rounded bg-paper-raised" />
         <div className="h-3 w-full rounded bg-paper-raised" />
         <div className="h-3 w-4/5 rounded bg-paper-raised" />
         <div className="flex gap-2 pt-1">
@@ -59,6 +59,13 @@ export function ProjectCardSkeleton() {
   )
 }
 
+/**
+ * Three real columns — name, image, details — rather than a title
+ * overlaid on the meta block. Name stays minimal (index + title only);
+ * everything else (timeline, summary, status, tech, links) lives in the
+ * details column on the right, per the "main content on the right, left
+ * stays minimal" brief.
+ */
 export default function ProjectCardClean({ project, index }) {
   const isLive = project.status === 'Live'
 
@@ -70,25 +77,26 @@ export default function ProjectCardClean({ project, index }) {
         aria-label={`Open ${project.title}`}
       />
 
-      <div className="grid grid-cols-4 items-start gap-x-6 py-10 sm:grid-cols-8 lg:grid-cols-12">
-        {index != null && (
-          <div className="hidden font-display text-ed-sm tabular-nums tracking-ed-wide text-ink-muted lg:col-span-1 lg:block">
-            {String(index + 1).padStart(2, '0')}
-          </div>
-        )}
+      <div className="grid grid-cols-4 items-start gap-x-10 gap-y-6 py-12 sm:grid-cols-8 lg:grid-cols-12">
+        <div className="col-span-4 sm:col-span-3 lg:col-span-3">
+          {index != null && (
+            <p className="font-display text-ed-xs tabular-nums tracking-ed-wide text-ink-muted" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </p>
+          )}
+          <h3 className="mt-2 font-ed-serif font-bold text-ed-xl leading-tight text-ink transition-colors group-hover:text-accent">
+            {project.title}
+          </h3>
+        </div>
 
-        <div className="col-span-4 sm:col-span-3 lg:col-span-4">
+        <div className="col-span-4 sm:col-span-5 lg:col-span-3">
           <Thumb src={project?.screenshots?.[0]} alt={`${project.title} preview`} />
         </div>
 
-        <div className={`col-span-4 sm:col-span-5 ${index != null ? 'lg:col-span-7' : 'lg:col-span-8'}`}>
+        <div className="col-span-4 sm:col-span-8 lg:col-span-6">
           <p className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">
             {project.type} · {project.timeline}
           </p>
-
-          <h3 className="mt-1 truncate font-ed-serif font-bold text-ed-xl text-ink transition-colors group-hover:text-accent">
-            {project.title}
-          </h3>
 
           <p className="mt-3 max-w-prose text-ed-base leading-normal text-ink-muted line-clamp-2">
             {project.summary}
