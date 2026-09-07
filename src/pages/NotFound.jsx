@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
+import Container from '../components/ui/Container'
+import EditorialLink from '../components/ui/EditorialLink'
+import { BeeDoodle } from '../components/BeeSketch'
 
 export default function NotFound() {
   const { pathname } = useLocation()
@@ -16,20 +19,15 @@ export default function NotFound() {
       <title>404 — Page Not Found · Birash Thing</title>
       <meta name="description" content="This page doesn't exist. Head back to Birash Thing's portfolio." />
     </Helmet>
-    <div className="flex flex-col items-center justify-center py-32 text-center">
-      <p className="text-6xl font-bold text-primary-600">404</p>
-      <h1 className="mt-4 text-2xl font-semibold">Page not found</h1>
-      <p className="mt-2 text-neutral-500 dark:text-neutral-400">
-        The page <code className="text-sm">{pathname}</code> doesn't exist.
+    <Container className="flex flex-col items-center py-32 text-center">
+      <BeeDoodle size={48} className="text-ink-muted/40" />
+      <p className="mt-6 font-display text-ed-5xl leading-none text-accent">404</p>
+      <h1 className="mt-4 font-display text-ed-2xl text-ink">Page not found</h1>
+      <p className="mt-3 max-w-prose text-ed-base text-ink-muted">
+        The page <code className="text-ed-sm">{pathname}</code> doesn't exist.
       </p>
-      <Link
-        to="/"
-        className="mt-8 rounded-xl bg-primary-600 px-6 py-2.5 text-sm font-medium text-white
-                   transition hover:bg-primary-700"
-      >
-        Back to Home
-      </Link>
-    </div>
+      <EditorialLink to="/" className="mt-10">Back to Home</EditorialLink>
+    </Container>
     </>
   )
 }
