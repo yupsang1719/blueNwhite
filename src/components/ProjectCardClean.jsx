@@ -8,7 +8,9 @@ import HairlineRule from './ui/HairlineRule'
 /**
  * Screenshot thumbnail. `project.screenshots[0]` can be absent, and even
  * a present URL can 404 — both fall back to the same placeholder so the
- * box never collapses or shows a broken-image icon.
+ * box never collapses or shows a broken-image icon. Desaturated at rest
+ * to read as monochrome editorial photography; the parent `article`'s
+ * `group` reveals colour on hover, since the whole row is one hit target.
  */
 function Thumb({ src, alt }) {
   const [broken, setBroken] = useState(false)
@@ -26,7 +28,7 @@ function Thumb({ src, alt }) {
           alt={alt}
           loading="lazy"
           onError={() => setBroken(true)}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
         />
       )}
     </div>

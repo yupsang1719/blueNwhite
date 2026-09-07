@@ -5,8 +5,10 @@ import HairlineRule from './ui/HairlineRule'
 import EditorialLink from './ui/EditorialLink'
 
 /**
- * Full-bleed indigo hero. No portrait photo — the Bee mark stands in as
- * the personal mark instead (Birash's call, not a stock substitute).
+ * Full-bleed black-and-white hero — stands in for monochrome editorial
+ * photography. No portrait photo — the Bee mark stands in as the personal
+ * mark instead (Birash's call, not a stock substitute), paired with a
+ * vertical wordmark echoing the name-beside-portrait convention.
  * The `left-1/2 right-1/2 mx-[-50vw] w-screen` combo is the standard
  * full-bleed-inside-a-constrained-parent breakout; it only works because
  * nothing between here and the viewport clips overflow (Home.jsx keeps
@@ -68,8 +70,14 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <div className="col-span-4 sm:col-span-8 lg:col-span-5 lg:col-start-8 flex justify-center lg:justify-end">
+        <div className="col-span-4 sm:col-span-8 lg:col-span-5 lg:col-start-8 flex items-center justify-center gap-6 lg:justify-end">
           <BeeDoodle size={220} className="h-auto w-40 text-hero-fg/90 sm:w-56 lg:w-64" />
+          <p
+            aria-hidden="true"
+            className="hidden [writing-mode:vertical-rl] font-display text-ed-sm uppercase tracking-ed-wide text-hero-fg/50 lg:block"
+          >
+            Birash Thing
+          </p>
         </div>
       </Container>
 
