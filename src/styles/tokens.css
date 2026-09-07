@@ -1,0 +1,107 @@
+/*
+  Design tokens — Japanese editorial direction.
+
+  Every value the redesign uses comes from here. Light and dark pairs are
+  defined side by side so a change to one is reviewed against the other.
+  Dark mode is class-based (`.dark` on <html>, toggled by useDarkMode.js) —
+  matches the existing mechanism, not a prefers-color-scheme query.
+
+  Namespaced as `--color-*`, `--text-*`, `--space-*`, `--rule-*`, `--font-*`
+  so nothing here collides with pre-existing Tailwind tokens (`primary-*`,
+  `neutral-*`) still used by pages this redesign hasn't reached yet.
+*/
+
+:root {
+  /* ---- Colour: paper + ink (body surfaces) ---- */
+  --color-paper: #f7f4ec;          /* warm off-white paper */
+  --color-paper-raised: #f1ece1;   /* one step deeper, for hairline-separated zones */
+  --color-ink: #1c1a17;            /* sumi — near-black, warm */
+  --color-ink-muted: #57534e;      /* secondary text on paper */
+
+  /* ---- Colour: the one accent ---- */
+  --color-accent: #2f3e9e;         /* indigo — links, numbered markers, focus */
+  --color-accent-ink: #ffffff;     /* text/icon colour on top of accent fills */
+
+  /* ---- Colour: full-bleed hero ---- */
+  --color-hero-bg: #1b2447;        /* indigo backdrop / photo overlay tint */
+  --color-hero-fg: #f5efe0;        /* cream type on the hero */
+  --color-hero-rule: rgba(245, 239, 224, 0.35); /* hairline rule on the hero */
+
+  /* ---- Hairline rules (replace cards/shadows) ---- */
+  --color-rule: rgba(28, 26, 23, 0.14);
+  --rule-width: 0.5px;
+
+  /* ---- Type scale (1rem = 16px) ---- */
+  --text-xs: 0.75rem;    /* 12px — captions, numbered markers */
+  --text-sm: 0.875rem;   /* 14px — meta, eyebrow labels */
+  --text-base: 1rem;     /* 16px — body */
+  --text-md: 1.125rem;   /* 18px — lead paragraph */
+  --text-lg: 1.375rem;   /* 22px — subhead */
+  --text-xl: 1.75rem;    /* 28px — section title */
+  --text-2xl: 2.25rem;   /* 36px */
+  --text-3xl: 3rem;      /* 48px */
+  --text-4xl: 4rem;      /* 64px */
+  --text-5xl: 5.5rem;    /* 88px — hero display */
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;   /* generous, editorial body leading */
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.06em; /* eyebrow labels, numbered markers, all-caps */
+
+  /* ---- Type families ----
+     Space Grotesk is already loaded (index.html) and used site-wide as the
+     display face — kept as-is rather than adding a new font. Body copy
+     defaults to the system stack so the redesign leans on space/rules/type
+     scale rather than a second typeface. Flagging this: if an editorial
+     serif for headlines is wanted, that's a new font load and needs sign-off
+     first (see CONSTRAINTS: no new dependencies without asking). */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ---- Spacing (generous negative space) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+
+  /* ---- Breakpoints (reference values; mirrored into tailwind.config.js
+     `screens` so utilities stay the source of truth for media queries —
+     custom properties can't be used inside @media conditions) ---- */
+  --bp-xs: 375px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+
+  /* ---- Grid ---- */
+  --grid-columns: 12;
+  --grid-gutter: 1.5rem;
+  --container-max: 1200px;
+}
+
+:root.dark {
+  --color-paper: #15130f;
+  --color-paper-raised: #1c1a15;
+  --color-ink: #ede8de;
+  --color-ink-muted: #a39c8e;
+
+  --color-accent: #6b7fe0;
+  --color-accent-ink: #0e1330;
+
+  --color-hero-bg: #10152b;
+  --color-hero-fg: #f5efe0;
+  --color-hero-rule: rgba(245, 239, 224, 0.3);
+
+  --color-rule: rgba(237, 232, 222, 0.16);
+}
