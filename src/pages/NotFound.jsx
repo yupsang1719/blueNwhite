@@ -21,8 +21,8 @@ export default function NotFound() {
     </Helmet>
     <Container className="flex flex-col items-center py-32 text-center">
       <BeeDoodle size={48} className="text-ink-muted/40" />
-      <p className="mt-6 font-display text-ed-5xl leading-none text-accent">404</p>
-      <h1 className="mt-4 font-display text-ed-2xl text-ink">Page not found</h1>
+      <p className="mt-6 font-ed-serif font-black text-ed-5xl leading-none text-accent">404</p>
+      <h1 className="mt-4 font-ed-serif font-bold text-ed-2xl text-ink">Page not found</h1>
       <p className="mt-3 max-w-prose text-ed-base text-ink-muted">
         The page <code className="text-ed-sm">{pathname}</code> doesn't exist.
       </p>

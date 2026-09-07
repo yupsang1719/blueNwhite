@@ -21,7 +21,7 @@ export default function SectionHeader({ number, eyebrow, title, action, as: Head
       )}
 
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-        <Heading className="font-display text-ed-2xl leading-tight tracking-ed-tight text-ink sm:text-ed-3xl">
+        <Heading className="font-ed-serif font-bold text-ed-2xl leading-[1.02] tracking-ed-tight text-ink sm:text-ed-3xl">
           {title}
         </Heading>
         {action && <div className="shrink-0 pb-1">{action}</div>}

@@ -86,7 +86,7 @@ export default function ProjectCardClean({ project, index }) {
             {project.type} · {project.timeline}
           </p>
 
-          <h3 className="mt-1 truncate font-display text-ed-xl text-ink transition-colors group-hover:text-accent">
+          <h3 className="mt-1 truncate font-ed-serif font-bold text-ed-xl text-ink transition-colors group-hover:text-accent">
             {project.title}
           </h3>
 

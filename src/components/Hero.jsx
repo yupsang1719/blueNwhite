@@ -34,10 +34,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.05 }}
-            className="mt-4 max-w-2xl font-display text-ed-3xl leading-tight tracking-ed-tight sm:text-ed-4xl lg:text-ed-5xl"
+            className="mt-4 max-w-3xl font-ed-serif font-black text-ed-3xl leading-[0.98] tracking-ed-tight sm:text-ed-4xl lg:text-ed-5xl"
           >
             Birash Thing builds production web apps —{' '}
-            <span className="text-hero-accent">and ships them fast.</span>
+            <span className="font-semibold italic text-hero-accent">and ships them fast.</span>
           </motion.h1>
 
           <motion.p

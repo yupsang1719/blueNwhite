@@ -46,24 +46,30 @@
   --text-2xl: 2.25rem;   /* 36px */
   --text-3xl: 3rem;      /* 48px */
   --text-4xl: 4rem;      /* 64px */
-  --text-5xl: 5.5rem;    /* 88px — hero display */
+  --text-5xl: 6.5rem;    /* 104px — hero display, serif */
 
   --leading-tight: 1.1;
   --leading-snug: 1.3;
   --leading-normal: 1.6;   /* generous, editorial body leading */
   --leading-relaxed: 1.75;
 
-  --tracking-tight: -0.01em;
+  /* Didone-style serifs read better tighter at display sizes than the
+     0.06em the sans/eyebrow tracking uses — kept as one shared "tight"
+     token rather than splitting per-family, since every current
+     tracking-ed-tight consumer is a headline. */
+  --tracking-tight: -0.02em;
   --tracking-normal: 0em;
   --tracking-wide: 0.06em; /* eyebrow labels, numbered markers, all-caps */
 
   /* ---- Type families ----
-     Space Grotesk is already loaded (index.html) and used site-wide as the
-     display face — kept as-is rather than adding a new font. Body copy
-     defaults to the system stack so the redesign leans on space/rules/type
-     scale rather than a second typeface. Flagging this: if an editorial
-     serif for headlines is wanted, that's a new font load and needs sign-off
-     first (see CONSTRAINTS: no new dependencies without asking). */
+     Two voices, deliberately: Playfair Display (serif) carries headline/
+     name-scale moments — the "voice" of the page, matching the fashion-
+     editorial references' high-contrast display serif. Space Grotesk
+     stays for structural chrome — nav, eyebrows, numbered markers, meta —
+     so the scale/weight contrast between the two is what reads as
+     "designed" rather than a single typeface doing everything. Both now
+     loaded via index.html (added on request — see chat for sign-off). */
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 

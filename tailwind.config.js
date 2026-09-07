@@ -40,6 +40,10 @@ export default {
         display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         // Editorial redesign body face — system stack, no new font load.
         ed: ['var(--font-body)'],
+        // Editorial display serif (Playfair Display, added on request) —
+        // headline/name-scale moments only. Namespaced so Tailwind's
+        // default `font-serif` (unused so far, checked) stays untouched.
+        'ed-serif': ['var(--font-serif)'],
       },
       fontSize: {
         // Editorial type scale — prefixed `ed-*` so default text-sm/text-lg
