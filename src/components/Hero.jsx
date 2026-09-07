@@ -9,7 +9,7 @@ import EditorialLink from './ui/EditorialLink'
  * editorial photography rather than a casual colour snapshot, paired with
  * his name in vertical katakana (ビラシュ・シング — his own confirmed
  * reading; kanji isn't used since it's a foreign name, not a native
- * Japanese word). The image's native ratio is 3:4 (450x600), matched
+ * Japanese word). The image's native ratio is 4:5 (1440x1800), matched
  * exactly by the container so object-cover never crops it.
  * The `left-1/2 right-1/2 mx-[-50vw] w-screen` combo is the standard
  * full-bleed-inside-a-constrained-parent breakout; it only works because
@@ -73,9 +73,9 @@ export default function Hero() {
         </div>
 
         <div className="col-span-4 sm:col-span-8 lg:col-span-5 lg:col-start-8 flex items-center justify-center gap-6 lg:justify-end">
-          <div className="aspect-[3/4] w-48 shrink-0 overflow-hidden sm:w-64 lg:w-72">
+          <div className="aspect-[4/5] w-48 shrink-0 overflow-hidden sm:w-64 lg:w-72">
             <img
-              src="/headshot/IMG_1847.JPG"
+              src="/headshot/IMG_1193.JPG"
               alt="Birash Thing"
               className="h-full w-full object-cover grayscale contrast-125"
             />
