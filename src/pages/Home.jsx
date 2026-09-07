@@ -99,7 +99,7 @@ export default function Home() {
         )}
       </Container>
       {/* ===== Experience ===== */}
-      <ExperienceSection limit={3} />
+      <ExperienceSection limit={3} number={2} eyebrow="Career" />
     </section>
     </>
   )
