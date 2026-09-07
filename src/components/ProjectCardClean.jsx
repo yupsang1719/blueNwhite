@@ -38,7 +38,7 @@ function Thumb({ src, alt }) {
 /** Matches ProjectCardClean's grid exactly so nothing shifts when data arrives. */
 export function ProjectCardSkeleton() {
   return (
-    <div className="grid animate-pulse grid-cols-4 items-start gap-x-10 gap-y-6 py-12 sm:grid-cols-8 lg:grid-cols-12">
+    <div className="grid animate-pulse grid-cols-4 items-start gap-x-8 gap-y-6 py-12 sm:grid-cols-8 sm:gap-x-12 lg:grid-cols-12 lg:gap-x-16">
       <div className="col-span-4 space-y-2 sm:col-span-3 lg:col-span-3">
         <div className="h-3 w-6 rounded bg-paper-raised" />
         <div className="h-6 w-4/5 rounded bg-paper-raised" />
@@ -77,14 +77,14 @@ export default function ProjectCardClean({ project, index }) {
         aria-label={`Open ${project.title}`}
       />
 
-      <div className="grid grid-cols-4 items-start gap-x-10 gap-y-6 py-12 sm:grid-cols-8 lg:grid-cols-12">
+      <div className="grid grid-cols-4 items-start gap-x-8 gap-y-6 py-12 sm:grid-cols-8 sm:gap-x-12 lg:grid-cols-12 lg:gap-x-16">
         <div className="col-span-4 sm:col-span-3 lg:col-span-3">
           {index != null && (
             <p className="font-display text-ed-xs tabular-nums tracking-ed-wide text-ink-muted" aria-hidden="true">
               {String(index + 1).padStart(2, '0')}
             </p>
           )}
-          <h3 className="mt-2 font-ed-serif font-bold text-ed-xl leading-tight text-ink transition-colors group-hover:text-accent">
+          <h3 className="mt-2 font-ed-serif font-bold text-ed-xl leading-[1.08] tracking-ed-tight text-ink transition-colors group-hover:text-accent sm:text-ed-2xl">
             {project.title}
           </h3>
         </div>
