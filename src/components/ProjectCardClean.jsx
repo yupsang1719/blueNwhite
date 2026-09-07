@@ -1,121 +1,143 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiGithub, FiExternalLink, FiArrowUpRight } from 'react-icons/fi'
 import ReactGA from 'react-ga4'
+import { BeeDoodle } from './BeeSketch'
+import HairlineRule from './ui/HairlineRule'
 
-const STATUS_CONFIG = {
-  'Live':           { color: 'bg-emerald-500', text: 'text-emerald-700 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-950/50' },
-  'Completed':      { color: 'bg-violet-500',  text: 'text-violet-700  dark:text-violet-400',  bg: 'bg-violet-50  dark:bg-violet-950/50'  },
-  'In Development': { color: 'bg-amber-400',   text: 'text-amber-700   dark:text-amber-400',   bg: 'bg-amber-50   dark:bg-amber-950/50'   },
-}
-
-export default function ProjectCardClean({ project }) {
-  const status = STATUS_CONFIG[project.status] ?? STATUS_CONFIG['Completed']
+/**
+ * Screenshot thumbnail. `project.screenshots[0]` can be absent, and even
+ * a present URL can 404 — both fall back to the same placeholder so the
+ * box never collapses or shows a broken-image icon.
+ */
+function Thumb({ src, alt }) {
+  const [broken, setBroken] = useState(false)
+  const showPlaceholder = !src || broken
 
   return (
-    <div className="group relative flex flex-col rounded-2xl border border-neutral-200 bg-white shadow-sm
-                    transition hover:shadow-lg hover:-translate-y-0.5
-                    dark:border-neutral-800 dark:bg-neutral-900/80">
+    <div className="aspect-[4/3] w-full overflow-hidden bg-paper-raised">
+      {showPlaceholder ? (
+        <div className="flex h-full w-full items-center justify-center">
+          <BeeDoodle size={32} className="text-ink-muted/40" />
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onError={() => setBroken(true)}
+          className="h-full w-full object-cover"
+        />
+      )}
+    </div>
+  )
+}
 
-      <Link to={`/projects/${project.slug}`} className="absolute inset-0 z-10 rounded-2xl" aria-label={`Open ${project.title}`} />
+/** Matches ProjectCardClean's grid exactly so nothing shifts when data arrives. */
+export function ProjectCardSkeleton() {
+  return (
+    <div className="grid animate-pulse grid-cols-4 items-start gap-x-6 py-10 sm:grid-cols-8 lg:grid-cols-12">
+      <div className="hidden lg:col-span-1 lg:block">
+        <div className="h-4 w-6 rounded bg-paper-raised" />
+      </div>
+      <div className="col-span-4 sm:col-span-3 lg:col-span-4">
+        <div className="aspect-[4/3] w-full bg-paper-raised" />
+      </div>
+      <div className="col-span-4 space-y-3 sm:col-span-5 lg:col-span-7">
+        <div className="h-3 w-1/3 rounded bg-paper-raised" />
+        <div className="h-5 w-2/3 rounded bg-paper-raised" />
+        <div className="h-3 w-full rounded bg-paper-raised" />
+        <div className="h-3 w-4/5 rounded bg-paper-raised" />
+        <div className="flex gap-2 pt-1">
+          <div className="h-3 w-12 rounded bg-paper-raised" />
+          <div className="h-3 w-14 rounded bg-paper-raised" />
+        </div>
+      </div>
+    </div>
+  )
+}
 
-      {/* Screenshot */}
-      <div className="relative overflow-hidden rounded-t-2xl bg-neutral-100 dark:bg-neutral-800">
-        {project?.screenshots?.[0] ? (
-          <>
-            <img
-              src={project.screenshots[0]}
-              alt={`${project.title} preview`}
-              className="h-48 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-          </>
-        ) : (
-          <div className="flex h-48 items-center justify-center">
-            <span className="font-mono text-2xl font-bold text-neutral-300 dark:text-neutral-600">
-              {project.title.slice(0, 2).toUpperCase()}
-            </span>
+export default function ProjectCardClean({ project, index }) {
+  const isLive = project.status === 'Live'
+
+  return (
+    <article className="group relative">
+      <Link
+        to={`/projects/${project.slug}`}
+        className="absolute inset-0 z-10"
+        aria-label={`Open ${project.title}`}
+      />
+
+      <div className="grid grid-cols-4 items-start gap-x-6 py-10 sm:grid-cols-8 lg:grid-cols-12">
+        {index != null && (
+          <div className="hidden font-display text-ed-sm tabular-nums tracking-ed-wide text-ink-muted lg:col-span-1 lg:block">
+            {String(index + 1).padStart(2, '0')}
           </div>
         )}
 
-        {/* Status badge overlaid on screenshot */}
-        <div className={`absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full px-2.5 py-1
-                         text-[11px] font-semibold backdrop-blur-sm
-                         ${status.text} bg-white/85 dark:bg-black/60`}>
-          <span className={`h-1.5 w-1.5 rounded-full ${status.color} ${project.status === 'Live' ? 'animate-pulse' : ''}`} />
-          {project.status}
+        <div className="col-span-4 sm:col-span-3 lg:col-span-4">
+          <Thumb src={project?.screenshots?.[0]} alt={`${project.title} preview`} />
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className={`col-span-4 sm:col-span-5 ${index != null ? 'lg:col-span-7' : 'lg:col-span-8'}`}>
+          <p className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">
+            {project.type} · {project.timeline}
+          </p>
 
-        {/* Title row */}
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <p className="text-[11px] font-medium uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-              {project.type} · {project.timeline}
-            </p>
-            <h3 className="mt-0.5 truncate font-bold text-neutral-900 transition-colors
-                           group-hover:text-blue-600 dark:text-neutral-100 dark:group-hover:text-blue-400">
-              {project.title}
-            </h3>
+          <h3 className="mt-1 truncate font-display text-ed-xl text-ink transition-colors group-hover:text-accent">
+            {project.title}
+          </h3>
+
+          <p className="mt-3 max-w-prose text-ed-base leading-normal text-ink-muted line-clamp-2">
+            {project.summary}
+          </p>
+
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+            <span className="flex items-center gap-1.5 text-ed-xs uppercase tracking-ed-wide text-ink-muted">
+              <span className={`h-1.5 w-1.5 rounded-full ${isLive ? 'bg-accent' : 'bg-ink-muted'}`} aria-hidden="true" />
+              {project.status}
+            </span>
+            {project.tech.slice(0, 6).map((t) => (
+              <span key={t} className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">
+                {t}
+              </span>
+            ))}
           </div>
 
-          {/* Links */}
-          <div className="relative z-20 flex shrink-0 items-center gap-0.5 text-neutral-400">
+          <div className="relative z-20 mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="text-ed-xs text-ink-muted">{project.role}</span>
             {project.repoUrl && (
-              <a href={project.repoUrl} target="_blank" rel="noreferrer"
-                 onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_github', label: project.title }) }}
-                 aria-label="GitHub repo"
-                 className="grid h-7 w-7 place-items-center rounded-lg transition
-                            hover:bg-neutral-100 hover:text-neutral-700
-                            dark:hover:bg-neutral-800 dark:hover:text-neutral-200">
-                <FiGithub size={15} />
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_github', label: project.title }) }}
+                aria-label="GitHub repo"
+                className="text-ink-muted transition-colors hover:text-accent"
+              >
+                <FiGithub size={16} />
               </a>
             )}
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noreferrer"
-                 onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_live', label: project.title }) }}
-                 aria-label="Live site"
-                 className="grid h-7 w-7 place-items-center rounded-lg transition
-                            hover:bg-neutral-100 hover:text-neutral-700
-                            dark:hover:bg-neutral-800 dark:hover:text-neutral-200">
-                <FiExternalLink size={15} />
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => { e.stopPropagation(); ReactGA.event({ category: 'Project', action: 'click_live', label: project.title }) }}
+                aria-label="Live site"
+                className="text-ink-muted transition-colors hover:text-accent"
+              >
+                <FiExternalLink size={16} />
               </a>
             )}
+            <span className="flex items-center gap-1 text-ed-xs uppercase tracking-ed-wide text-ink-muted opacity-0 transition-opacity group-hover:text-accent group-hover:opacity-100">
+              View case study <FiArrowUpRight size={13} />
+            </span>
           </div>
         </div>
-
-        {/* Summary */}
-        <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400 line-clamp-2">
-          {project.summary}
-        </p>
-
-        {/* Tech chips */}
-        <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
-          {project.tech.slice(0, 6).map((t) => (
-            <span key={t}
-              className="rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5
-                         font-mono text-[11px] text-neutral-600
-                         dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300">
-              {t}
-            </span>
-          ))}
-        </div>
-
       </div>
 
-      {/* Footer CTA */}
-      <div className="flex items-center justify-between border-t border-neutral-100 px-5 py-3
-                      dark:border-neutral-800">
-        <span className="text-xs text-neutral-400 dark:text-neutral-500">{project.role}</span>
-        <span className="relative z-20 flex items-center gap-1 text-xs font-medium text-blue-600
-                         opacity-0 transition-opacity group-hover:opacity-100 dark:text-blue-400">
-          View case study <FiArrowUpRight size={13} />
-        </span>
-      </div>
-
-    </div>
+      <HairlineRule />
+    </article>
   )
 }

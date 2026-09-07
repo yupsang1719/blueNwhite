@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { fetchProjects } from '../shared/projects'
-import ProjectCardClean from '../components/ProjectCardClean'
+import ProjectCardClean, { ProjectCardSkeleton } from '../components/ProjectCardClean'
 import ExperienceSection from '../components/ExperienceSection'
 import SkillsMarquee from '../components/SkillsMarquee'
 import Hero from '../components/Hero'
+import Container from '../components/ui/Container'
+import SectionHeader from '../components/ui/SectionHeader'
+import EditorialLink from '../components/ui/EditorialLink'
+import HairlineRule from '../components/ui/HairlineRule'
 
 // Framer Motion animation presets
 const containerVariants = {
@@ -60,55 +63,41 @@ export default function Home() {
       <SkillsMarquee />
 
       {/* ===== Recent Projects (2 only) ===== */}
-      <div className="mx-auto mt-16 w-full max-w-5xl">
-        <div className="mb-6 flex items-center justify-between">
-          <h2 className="text-2xl font-semibold">Recent Projects</h2>
-          <Link
-            to="/projects"
-            className="text-primary-600 hover:text-primary-700 font-medium"
-          >
-            See all →
-          </Link>
-        </div>
+      <Container className="mt-16">
+        <SectionHeader
+          number={1}
+          eyebrow="Selected Work"
+          title="Recent Projects"
+          action={<EditorialLink to="/projects">See all</EditorialLink>}
+        />
 
         {loading && (
-          <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-            {[0, 1].map(i => (
-              <div key={i} className="animate-pulse overflow-hidden rounded-2xl border border-neutral-200 bg-white dark:border-neutral-800 dark:bg-neutral-900/80">
-                <div className="h-48 bg-neutral-100 dark:bg-neutral-800" />
-                <div className="p-5 space-y-3">
-                  <div className="h-3 w-1/3 rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="h-4 w-1/2 rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="h-3 w-full rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="h-3 w-4/5 rounded bg-neutral-100 dark:bg-neutral-800" />
-                  <div className="flex gap-2 pt-1">
-                    <span className="h-5 w-14 rounded-md bg-neutral-100 dark:bg-neutral-800" />
-                    <span className="h-5 w-16 rounded-md bg-neutral-100 dark:bg-neutral-800" />
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div>
+            <ProjectCardSkeleton />
+            <HairlineRule />
+            <ProjectCardSkeleton />
           </div>
         )}
         {!loading && error && (
-          <div className="rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700
-                          dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">{error}</div>
+          <p className="py-10 text-ed-sm text-ink-muted">{error}</p>
+        )}
+        {!loading && !error && projects.length === 0 && (
+          <p className="py-10 text-ed-sm text-ink-muted">No projects to show yet — check back soon.</p>
         )}
         {!loading && !error && projects.length > 0 && (
           <motion.div
-            className="grid gap-8 sm:grid-cols-1 md:grid-cols-2"
             variants={containerVariants}
             initial="hidden"
             animate="show"
           >
-            {projects.map((p) => (
+            {projects.map((p, i) => (
               <motion.div key={p.slug} variants={itemVariants}>
-                <ProjectCardClean project={p} />
+                <ProjectCardClean project={p} index={i} />
               </motion.div>
             ))}
           </motion.div>
         )}
-      </div>
+      </Container>
       {/* ===== Experience ===== */}
       <ExperienceSection limit={3} />
     </section>
