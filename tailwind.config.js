@@ -53,6 +53,13 @@ export default {
       screens: {
         xs: '375px',
       },
+      letterSpacing: {
+        // Namespaced so default tracking-tight (already used by the global
+        // h1-h3 rule in index.css and by Layout.jsx) is unaffected.
+        'ed-tight': 'var(--tracking-tight)',
+        'ed-normal': 'var(--tracking-normal)',
+        'ed-wide': 'var(--tracking-wide)',
+      },
       borderRadius: { xl: '1rem', '2xl': '1.25rem' },
       keyframes: {
         marquee: {
