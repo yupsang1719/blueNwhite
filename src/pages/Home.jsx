@@ -58,7 +58,7 @@ export default function Home() {
     </Helmet>
     <Hero />
 
-    <section className="relative overflow-hidden px-4">
+    <section className="relative overflow-hidden">
 
       <SkillsMarquee />
 

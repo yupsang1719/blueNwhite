@@ -98,7 +98,7 @@
   /* ---- Grid ---- */
   --grid-columns: 12;
   --grid-gutter: 1.5rem;
-  --container-max: 1200px;
+  --container-max: 1400px;
 }
 
 :root.dark {

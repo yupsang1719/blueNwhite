@@ -44,9 +44,9 @@ export default function Layout() {
   return (
     <div className="min-h-dvh flex flex-col">
       <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/70 backdrop-blur dark:bg-neutral-950/70 dark:border-neutral-800">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-[var(--container-max)] items-center justify-between px-4 py-3">
 
-          <Link to="/" className="text-lg font-bold tracking-tight" onClick={() => setMenuOpen(false)}>
+          <Link to="/" className="font-display text-lg font-semibold tracking-tight" onClick={() => setMenuOpen(false)}>
             Birash<span className="text-primary-600">.</span>
           </Link>
 
@@ -116,14 +116,14 @@ export default function Layout() {
         )}
       </header>
 
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
+      <main className="mx-auto w-full max-w-[var(--container-max)] flex-1 px-4 py-8">
         <Outlet />
       </main>
 
       <AskBirash />
 
       <footer className="border-t py-6 dark:border-neutral-800">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
+        <div className="mx-auto flex max-w-[var(--container-max)] flex-col items-center justify-between gap-4 px-4 sm:flex-row">
           <span className="text-sm text-neutral-500 dark:text-neutral-400">
             © {new Date().getFullYear()} Birash Thing
           </span>

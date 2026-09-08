@@ -87,7 +87,7 @@ export default function Projects() {
         className="absolute top-8 right-0 opacity-[0.06] dark:opacity-[0.08]
                    text-amber-600 dark:text-amber-400 pointer-events-none" />
 
-      <div className="mx-auto w-full max-w-5xl space-y-16">
+      <div className="mx-auto w-full max-w-[var(--container-max)] space-y-16">
 
         {/* ── Featured Projects ── */}
         <Container>
