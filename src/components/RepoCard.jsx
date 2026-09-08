@@ -1,83 +1,74 @@
 import { FiStar, FiGitBranch, FiExternalLink, FiGithub } from 'react-icons/fi'
-import { LANG_COLORS, timeAgo } from '../shared/github'
+import { timeAgo } from '../shared/github'
 import ReactGA from 'react-ga4'
 
 export default function RepoCard({ repo }) {
   return (
-    <div className="flex flex-col justify-between rounded-xl border border-neutral-200 bg-white/90 p-4
-                    shadow-sm transition hover:shadow-md hover:-translate-y-0.5
-                    dark:border-neutral-800 dark:bg-neutral-900/70">
-
-      {/* Top row: name + links */}
-      <div>
-        <div className="flex items-start justify-between gap-2">
+    <div className="py-6">
+      <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
+        <a
+          href={repo.htmlUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => ReactGA.event({ category: 'Repo', action: 'click_github', label: repo.name })}
+          className="font-ed-serif font-bold text-ed-lg text-ink transition-colors hover:text-accent"
+        >
+          {repo.name}
+        </a>
+        <div className="flex shrink-0 items-center gap-3 text-ink-muted">
           <a
             href={repo.htmlUrl}
             target="_blank"
             rel="noreferrer"
+            aria-label="GitHub"
             onClick={() => ReactGA.event({ category: 'Repo', action: 'click_github', label: repo.name })}
-            className="truncate font-mono text-sm font-semibold text-blue-600 hover:underline dark:text-blue-400"
+            className="transition-colors hover:text-accent"
           >
-            {repo.name}
+            <FiGithub size={15} />
           </a>
-          <div className="flex shrink-0 items-center gap-1 text-neutral-400">
-            <a href={repo.htmlUrl} target="_blank" rel="noreferrer"
-               aria-label="GitHub"
-               onClick={() => ReactGA.event({ category: 'Repo', action: 'click_github', label: repo.name })}
-               className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
-              <FiGithub size={15} />
+          {repo.homepage && (
+            <a
+              href={repo.homepage}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Live site"
+              onClick={() => ReactGA.event({ category: 'Repo', action: 'click_live', label: repo.name })}
+              className="transition-colors hover:text-accent"
+            >
+              <FiExternalLink size={15} />
             </a>
-            {repo.homepage && (
-              <a href={repo.homepage} target="_blank" rel="noreferrer"
-                 aria-label="Live site"
-                 onClick={() => ReactGA.event({ category: 'Repo', action: 'click_live', label: repo.name })}
-                 className="rounded p-1 hover:text-neutral-700 dark:hover:text-neutral-200">
-                <FiExternalLink size={15} />
-              </a>
-            )}
-          </div>
+          )}
         </div>
-
-        {repo.description && (
-          <p className="mt-1.5 text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">
-            {repo.description}
-          </p>
-        )}
-
-        {repo.topics.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {repo.topics.slice(0, 4).map((t) => (
-              <span key={t}
-                className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-700
-                           dark:bg-blue-950/50 dark:text-blue-300">
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
 
-      {/* Bottom row: language · stars · forks · pushed */}
-      <div className="mt-3 flex flex-wrap items-center gap-3 text-[11px] text-neutral-400 dark:text-neutral-500">
+      {repo.description && (
+        <p className="mt-2 max-w-prose text-ed-sm leading-normal text-ink-muted line-clamp-2">
+          {repo.description}
+        </p>
+      )}
+
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-ed-xs uppercase tracking-ed-wide text-ink-muted">
         {repo.language && (
-          <span className="flex items-center gap-1">
-            <span className="h-2.5 w-2.5 rounded-full"
-                  style={{ backgroundColor: LANG_COLORS[repo.language] ?? '#8b949e' }} />
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-ink-muted" aria-hidden="true" />
             {repo.language}
           </span>
         )}
         {repo.stars > 0 && (
           <span className="flex items-center gap-1">
-            <FiStar size={11} /> {repo.stars}
+            <FiStar size={11} aria-hidden="true" /> {repo.stars}
           </span>
         )}
         {repo.forks > 0 && (
           <span className="flex items-center gap-1">
-            <FiGitBranch size={11} /> {repo.forks}
+            <FiGitBranch size={11} aria-hidden="true" /> {repo.forks}
           </span>
         )}
+        {repo.topics.slice(0, 4).map((t) => (
+          <span key={t}>{t}</span>
+        ))}
         {repo.pushedAt && (
-          <span className="ml-auto">{timeAgo(repo.pushedAt)}</span>
+          <span className="ml-auto normal-case tracking-normal">{timeAgo(repo.pushedAt)}</span>
         )}
       </div>
     </div>
