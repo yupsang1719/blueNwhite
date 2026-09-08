@@ -42,12 +42,12 @@ export default function Layout() {
   }, [menuOpen])
 
   return (
-    <div className="min-h-dvh flex flex-col">
-      <header ref={headerRef} className="sticky top-0 z-50 border-b bg-white/70 backdrop-blur dark:bg-neutral-950/70 dark:border-neutral-800">
+    <div className="min-h-dvh flex flex-col bg-paper text-ink">
+      <header ref={headerRef} className="sticky top-0 z-50 border-b border-rule bg-paper/80 backdrop-blur">
         <div className="mx-auto flex max-w-[var(--container-max)] items-center justify-between px-4 py-3">
 
-          <Link to="/" className="font-display text-lg font-semibold tracking-tight" onClick={() => setMenuOpen(false)}>
-            Birash<span className="text-primary-600">.</span>
+          <Link to="/" className="font-ed-serif text-lg font-bold tracking-ed-tight" onClick={() => setMenuOpen(false)}>
+            Birash<span className="text-accent">.</span>
           </Link>
 
           <div className="flex items-center gap-1">
@@ -59,8 +59,8 @@ export default function Layout() {
                   to={n.to}
                   end
                   className={({ isActive }) =>
-                    `rounded-lg px-3 py-1.5 text-sm transition hover:bg-neutral-100 dark:hover:bg-neutral-800 ` +
-                    (isActive ? 'font-semibold text-primary-600 dark:text-primary-400' : 'text-neutral-600 dark:text-neutral-300')
+                    `px-3 py-1.5 text-ed-sm transition-colors ` +
+                    (isActive ? 'font-semibold text-accent' : 'text-ink-muted hover:text-accent')
                   }
                 >
                   {n.label}
@@ -72,10 +72,7 @@ export default function Layout() {
             <button
               onClick={toggleDark}
               aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="ml-1 grid h-8 w-8 place-items-center rounded-lg border border-neutral-200 bg-white
-                         text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-800
-                         dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400
-                         dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
+              className="ml-1 grid h-8 w-8 place-items-center text-ink-muted transition-colors hover:text-accent"
             >
               {dark ? <FiSun size={15} /> : <FiMoon size={15} />}
             </button>
@@ -85,9 +82,7 @@ export default function Layout() {
               onClick={() => setMenuOpen(o => !o)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              className="ml-1 grid h-8 w-8 place-items-center rounded-lg border border-neutral-200 bg-white
-                         text-neutral-500 transition hover:bg-neutral-100 sm:hidden
-                         dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800"
+              className="ml-1 grid h-8 w-8 place-items-center text-ink-muted transition-colors hover:text-accent sm:hidden"
             >
               {menuOpen ? <FiX size={16} /> : <FiMenu size={16} />}
             </button>
@@ -96,8 +91,7 @@ export default function Layout() {
 
         {/* Mobile dropdown menu */}
         {menuOpen && (
-          <nav className="border-t bg-white/95 px-4 pb-4 pt-2 backdrop-blur sm:hidden
-                          dark:border-neutral-800 dark:bg-neutral-950/95">
+          <nav className="border-t border-rule bg-paper/95 px-4 pb-4 pt-2 backdrop-blur sm:hidden">
             {nav.map(n => (
               <NavLink
                 key={n.to}
@@ -105,8 +99,8 @@ export default function Layout() {
                 end
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block rounded-lg px-3 py-2.5 text-sm transition hover:bg-neutral-100 dark:hover:bg-neutral-800 ` +
-                  (isActive ? 'font-semibold text-primary-600 dark:text-primary-400' : 'text-neutral-600 dark:text-neutral-300')
+                  `block py-2.5 text-ed-sm transition-colors ` +
+                  (isActive ? 'font-semibold text-accent' : 'text-ink-muted hover:text-accent')
                 }
               >
                 {n.label}
@@ -122,12 +116,12 @@ export default function Layout() {
 
       <AskBirash />
 
-      <footer className="border-t py-6 dark:border-neutral-800">
+      <footer className="border-t border-rule py-8">
         <div className="mx-auto flex max-w-[var(--container-max)] flex-col items-center justify-between gap-4 px-4 sm:flex-row">
-          <span className="text-sm text-neutral-500 dark:text-neutral-400">
+          <span className="text-ed-sm text-ink-muted">
             © {new Date().getFullYear()} Birash Thing
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {socials.map(({ icon: Icon, label, href }) => (
               <a
                 key={label}
@@ -136,12 +130,9 @@ export default function Layout() {
                 rel="noreferrer"
                 aria-label={label}
                 onClick={() => ReactGA.event({ category: 'Outbound', action: 'click', label })}
-                className="grid h-8 w-8 place-items-center rounded-lg border border-neutral-200 text-neutral-500
-                           transition hover:border-primary-300 hover:bg-primary-50 hover:text-primary-600
-                           dark:border-neutral-700 dark:text-neutral-400 dark:hover:border-primary-700
-                           dark:hover:bg-primary-950/40 dark:hover:text-primary-400"
+                className="text-ink-muted transition-colors hover:text-accent"
               >
-                <Icon size={15} />
+                <Icon size={16} />
               </a>
             ))}
           </div>
