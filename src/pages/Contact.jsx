@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
-import { BeeDoodle, BeeTrail, Honeycomb } from '../components/BeeSketch'
 import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
+import Container from '../components/ui/Container'
+import SectionHeader from '../components/ui/SectionHeader'
+import HairlineRule from '../components/ui/HairlineRule'
 
 const socials = [
   { icon: FiGithub,   label: 'GitHub',   href: 'https://github.com/yupsang1719' },
@@ -17,11 +19,8 @@ const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
 const PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const inputBase =
-  'w-full rounded-xl border border-neutral-200 bg-white px-4 py-2.5 text-sm text-neutral-900 ' +
-  'placeholder:text-neutral-400 outline-none transition ' +
-  'focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 ' +
-  'dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:placeholder:text-neutral-500 ' +
-  'dark:focus:border-primary-400 dark:focus:ring-primary-400/20'
+  'w-full border-0 border-b border-rule bg-transparent px-0 py-2.5 text-ed-base text-ink ' +
+  'placeholder:text-ink-muted/50 outline-none transition-colors focus:border-accent'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -61,151 +60,127 @@ export default function Contact() {
       <meta property="og:description" content="Get in touch with Birash Thing — open to full-stack developer roles in the UK." />
       <meta property="og:url" content="https://bluenwhite.co.uk/contact" />
     </Helmet>
-    <section className="relative overflow-hidden px-4 py-16">
-      <div className="pointer-events-none absolute inset-0 -z-10
-        bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.08),transparent_60%)]
-        dark:bg-[radial-gradient(ellipse_at_top,rgba(37,99,235,0.15),transparent_70%)]" />
+    <Container as="section" className="py-16">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <SectionHeader as="h1" eyebrow="Contact" title="Get in Touch with Birash Thing">
+          Currently open to full-stack developer roles in the UK. Whether you have a project
+          in mind or just want to say hi — my inbox is open.
+        </SectionHeader>
+      </motion.div>
 
-      {/* Bee sketch accents */}
-      <BeeDoodle size={80}
-        className="absolute top-4 left-2 opacity-[0.06] dark:opacity-[0.08]
-                   text-amber-600 dark:text-amber-400 -rotate-15 pointer-events-none" />
-      <BeeTrail width={180} height={65}
-        className="absolute bottom-16 right-0 opacity-[0.07] dark:opacity-[0.09]
-                   text-amber-500 dark:text-amber-400 pointer-events-none" />
-      <Honeycomb size={44}
-        className="absolute bottom-8 left-6 opacity-[0.06] dark:opacity-[0.08]
-                   text-amber-600 dark:text-amber-400 pointer-events-none" />
-
-      <div className="mx-auto w-full max-w-5xl">
-        {/* Header */}
+      <div className="mt-12 grid grid-cols-4 gap-x-10 gap-y-10 sm:grid-cols-8 lg:grid-cols-12">
+        {/* Form */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="col-span-4 sm:col-span-8 lg:col-span-8"
         >
-          <h1 className="text-3xl font-bold">Get in Touch with Birash Thing</h1>
-          <p className="mt-2 max-w-xl text-neutral-600 dark:text-neutral-300">
-            Birash Thing is currently open to full-stack developer roles in the UK.
-            Whether you have a project in mind or just want to say hi — my inbox is open.
-          </p>
-        </motion.div>
-
-        <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto]">
-          {/* Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {sent ? (
-              <div className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-6
-                              dark:border-emerald-800 dark:bg-emerald-950/40">
-                <FiCheckCircle className="shrink-0 text-2xl text-emerald-500" />
-                <div>
-                  <p className="font-semibold text-emerald-800 dark:text-emerald-300">Message sent!</p>
-                  <p className="text-sm text-emerald-700 dark:text-emerald-400">Thanks for reaching out — I'll get back to you soon.</p>
-                </div>
+          {sent ? (
+            <div className="flex items-center gap-3 border-t border-rule pt-6">
+              <FiCheckCircle className="shrink-0 text-2xl text-accent" aria-hidden="true" />
+              <div>
+                <p className="font-ed-serif font-bold text-ed-md text-ink">Message sent!</p>
+                <p className="text-ed-sm text-ink-muted">Thanks for reaching out — I'll get back to you soon.</p>
               </div>
-            ) : (
-              <form onSubmit={submit} className="space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact-name" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Name</label>
-                    <input
-                      id="contact-name"
-                      required
-                      placeholder="Birash Thing"
-                      className={inputBase}
-                      value={form.name}
-                      onChange={e => setForm({ ...form, name: e.target.value })}
-                    />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact-email" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Email</label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      required
-                      placeholder="birash@email.com"
-                      className={inputBase}
-                      value={form.email}
-                      onChange={e => setForm({ ...form, email: e.target.value })}
-                    />
-                  </div>
-                </div>
+            </div>
+          ) : (
+            <form onSubmit={submit} className="space-y-6">
+              <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-1.5">
-                  <label htmlFor="contact-message" className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Message</label>
-                  <textarea
-                    id="contact-message"
-                    rows={6}
+                  <label htmlFor="contact-name" className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">Name</label>
+                  <input
+                    id="contact-name"
                     required
-                    placeholder="Tell me about your project or opportunity…"
-                    className={`${inputBase} resize-none`}
-                    value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
+                    placeholder="Birash Thing"
+                    className={inputBase}
+                    value={form.name}
+                    onChange={e => setForm({ ...form, name: e.target.value })}
                   />
                 </div>
-                {error && (
-                  <div className="flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700
-                                  dark:border-red-900 dark:bg-red-950/40 dark:text-red-400">
-                    <FiAlertCircle className="mt-0.5 shrink-0" />
-                    {error}
-                  </div>
-                )}
-                <button
-                  disabled={loading}
-                  className="inline-flex items-center gap-2 rounded-xl bg-primary-600 px-6 py-2.5 font-medium
-                             text-white transition hover:bg-primary-700 disabled:opacity-50"
+                <div className="space-y-1.5">
+                  <label htmlFor="contact-email" className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">Email</label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    required
+                    placeholder="birash@email.com"
+                    className={inputBase}
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label htmlFor="contact-message" className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">Message</label>
+                <textarea
+                  id="contact-message"
+                  rows={6}
+                  required
+                  placeholder="Tell me about your project or opportunity…"
+                  className={`${inputBase} resize-none`}
+                  value={form.message}
+                  onChange={e => setForm({ ...form, message: e.target.value })}
+                />
+              </div>
+              {error && (
+                <div className="flex items-start gap-2 border-t border-rule pt-4 text-ed-sm text-ink-muted">
+                  <FiAlertCircle className="mt-0.5 shrink-0" aria-hidden="true" />
+                  {error}
+                </div>
+              )}
+              <button
+                disabled={loading}
+                className="inline-flex items-center gap-2 bg-accent px-6 py-3 font-display text-ed-sm uppercase tracking-ed-wide text-accent-ink transition-colors hover:bg-ink disabled:opacity-50"
+              >
+                <FiSend size={14} aria-hidden="true" />
+                {loading ? 'Sending…' : 'Send Message'}
+              </button>
+            </form>
+          )}
+        </motion.div>
+
+        {/* Side panel */}
+        <motion.div
+          initial={{ opacity: 0, x: 16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="col-span-4 sm:col-span-8 lg:col-span-4"
+        >
+          <div>
+            <p className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">Find me on</p>
+            <div className="mt-4 flex flex-col gap-3">
+              {socials.map(({ icon: Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 text-ed-sm text-ink-muted transition-colors hover:text-accent"
                 >
-                  <FiSend size={15} />
-                  {loading ? 'Sending…' : 'Send Message'}
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Side panel */}
-          <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col gap-4 md:w-56"
-          >
-            <div className="rounded-2xl border bg-white/70 p-5 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-neutral-500">Find me on</p>
-              <div className="flex flex-col gap-3">
-                {socials.map(({ icon: Icon, label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-3 text-sm text-neutral-700 transition
-                               hover:text-primary-600 dark:text-neutral-300 dark:hover:text-primary-400"
-                  >
-                    <span className="grid h-8 w-8 place-items-center rounded-lg border bg-white shadow-sm
-                                     dark:border-neutral-700 dark:bg-neutral-800">
-                      <Icon size={15} />
-                    </span>
-                    {label}
-                  </a>
-                ))}
-              </div>
+                  <Icon size={15} aria-hidden="true" />
+                  {label}
+                </a>
+              ))}
             </div>
+          </div>
 
-            <div className="rounded-2xl border bg-white/70 p-5 backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-900/60">
-              <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-neutral-500">Status</p>
-              <div className="mt-2 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1
-                              dark:bg-emerald-950/40">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">Open to work</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+          <HairlineRule className="my-6" />
+
+          <div>
+            <p className="text-ed-xs uppercase tracking-ed-wide text-ink-muted">Status</p>
+            <span className="mt-3 flex items-center gap-1.5 text-ed-sm text-ink">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+              Open to work
+            </span>
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </Container>
     </>
   )
 }
