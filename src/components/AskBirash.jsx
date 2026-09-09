@@ -97,8 +97,8 @@ export default function AskBirash() {
             onMouseLeave={() => setExpanded(false)}
             aria-label="Ask about Birash"
             className="fixed bottom-6 right-6 z-50 flex items-center gap-2 overflow-hidden
-              rounded-full bg-primary-600 text-white shadow-lg shadow-primary-600/30
-              transition-all duration-300 hover:bg-primary-700 hover:shadow-xl hover:shadow-primary-600/40"
+              rounded-full bg-accent text-accent-ink
+              transition-all duration-300 hover:bg-ink"
             style={{ padding: expanded ? '0.625rem 1.25rem' : '0.875rem' }}
           >
             <FiZap size={18} className="shrink-0" />
@@ -109,7 +109,7 @@ export default function AskBirash() {
                   animate={{ opacity: 1, width: 'auto' }}
                   exit={{ opacity: 0, width: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="whitespace-nowrap text-sm font-medium overflow-hidden"
+                  className="whitespace-nowrap text-ed-sm font-medium overflow-hidden"
                 >
                   Ask about Birash
                 </motion.span>
@@ -128,39 +128,35 @@ export default function AskBirash() {
             exit={{ opacity: 0, y: 24, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="fixed bottom-6 right-6 z-50 flex w-[calc(100vw-3rem)] max-w-sm flex-col
-              overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl
-              dark:border-neutral-700 dark:bg-neutral-900"
+              overflow-hidden border border-rule bg-paper"
             style={{ maxHeight: '72vh' }}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-primary-700 bg-primary-600 px-4 py-3">
+            <div className="flex items-center justify-between bg-accent px-4 py-3">
               <div className="flex items-center gap-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-                  <FiZap size={16} className="text-white" />
-                </div>
+                <FiZap size={16} className="text-accent-ink" aria-hidden="true" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Ask about Birash</p>
-                  <p className="text-[11px] text-primary-200">AI assistant · answers instantly</p>
+                  <p className="font-display text-ed-sm font-semibold text-accent-ink">Ask about Birash</p>
+                  <p className="text-ed-xs text-accent-ink/70">AI assistant · answers instantly</p>
                 </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close chat"
-                className="grid h-7 w-7 place-items-center rounded-lg text-primary-200
-                  transition hover:bg-white/10 hover:text-white"
+                className="grid h-7 w-7 place-items-center text-accent-ink/70 transition-colors hover:text-accent-ink"
               >
                 <FiX size={16} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
+            <div className="flex-1 space-y-3 overflow-y-auto p-4 text-ed-sm">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 leading-relaxed
                     ${m.role === 'user'
-                      ? 'rounded-br-sm bg-primary-600 text-white'
-                      : 'rounded-bl-sm bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200'
+                      ? 'rounded-br-sm bg-accent text-accent-ink'
+                      : 'rounded-bl-sm bg-paper-raised text-ink'
                     }`}>
                     {m.content}
                   </div>
@@ -170,11 +166,11 @@ export default function AskBirash() {
               {/* Typing indicator */}
               {loading && (
                 <div className="flex justify-start">
-                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-neutral-100 px-4 py-3 dark:bg-neutral-800">
+                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm bg-paper-raised px-4 py-3">
                     {[0, 1, 2].map(i => (
                       <motion.span
                         key={i}
-                        className="h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500"
+                        className="h-1.5 w-1.5 rounded-full bg-ink-muted"
                         animate={{ y: [0, -4, 0] }}
                         transition={{ duration: 0.6, delay: i * 0.15, repeat: Infinity }}
                       />
@@ -190,9 +186,7 @@ export default function AskBirash() {
                     <button
                       key={q}
                       onClick={() => send(q)}
-                      className="rounded-full border border-primary-200 bg-primary-50 px-3 py-1 text-[11px]
-                        font-medium text-primary-700 transition hover:bg-primary-100
-                        dark:border-primary-800 dark:bg-primary-950/40 dark:text-primary-400 dark:hover:bg-primary-950/70"
+                      className="rounded-full border border-rule px-3 py-1 text-ed-xs font-medium text-ink-muted transition-colors hover:border-accent hover:text-accent"
                     >
                       {q}
                     </button>
@@ -204,7 +198,7 @@ export default function AskBirash() {
             </div>
 
             {/* Input */}
-            <div className="border-t p-3 dark:border-neutral-700">
+            <div className="border-t border-rule p-3">
               <form
                 onSubmit={e => { e.preventDefault(); send() }}
                 className="flex items-center gap-2"
@@ -215,23 +209,22 @@ export default function AskBirash() {
                   onChange={e => setInput(e.target.value)}
                   placeholder="Ask anything about Birash…"
                   disabled={loading}
-                  className="flex-1 rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm
-                    outline-none transition placeholder:text-neutral-400
-                    focus:border-primary-400 focus:ring-2 focus:ring-primary-400/20
-                    disabled:opacity-50
-                    dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:placeholder:text-neutral-500"
+                  className="flex-1 rounded-full border border-rule bg-transparent px-4 py-2 text-ed-sm text-ink
+                    outline-none transition-colors placeholder:text-ink-muted/50
+                    focus:border-accent
+                    disabled:opacity-50"
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-primary-600 text-white
-                    transition hover:bg-primary-700 disabled:opacity-40"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-accent text-accent-ink
+                    transition-colors hover:bg-ink disabled:opacity-40"
                   aria-label="Send"
                 >
                   <FiSend size={15} />
                 </button>
               </form>
-              <p className="mt-2 text-center text-[10px] text-neutral-400 dark:text-neutral-600">
+              <p className="mt-2 text-center text-ed-xs text-ink-muted">
                 Powered by Claude AI · For professional enquiries only
               </p>
             </div>
