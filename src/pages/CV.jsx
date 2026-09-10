@@ -525,7 +525,7 @@ function DeveloperCVPreview() {
       {/* Header */}
       <div className="mb-2">
         <h1 className="text-3xl font-bold tracking-tight">Birash Thing</h1>
-        <p className="mt-1 text-base font-medium text-blue-700">Full-Stack Web Developer</p>
+        <p className="mt-1 text-base font-medium text-neutral-700">Full-Stack Web Developer</p>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-neutral-700">
           Building BarBooks — a live SaaS with 2 paying UK pub clients — while working as Full-Stack Developer
           & Marketing Manager at a hospitality group in Aldershot. 6+ years across enterprise Java, education
@@ -537,7 +537,7 @@ function DeveloperCVPreview() {
         <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
           {contact.map(({ icon: Icon, label, href }) => (
             <a key={label} href={href} target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-blue-600">
+              className="inline-flex items-center gap-1.5 text-xs text-neutral-600 hover:text-neutral-900">
               <Icon size={11} /> {label}
             </a>
           ))}
@@ -568,7 +568,7 @@ function DeveloperCVPreview() {
           <div key={i}>
             <div className="flex items-baseline gap-2">
               <p className="font-semibold">{p.name}</p>
-              {p.url && <a href={`https://${p.url}`} target="_blank" rel="noreferrer" className="text-xs text-blue-600 hover:underline">{p.url}</a>}
+              {p.url && <a href={`https://${p.url}`} target="_blank" rel="noreferrer" className="text-xs text-neutral-600 underline hover:text-neutral-900">{p.url}</a>}
             </div>
             <p className="mt-0.5 text-sm text-neutral-700">{p.desc}</p>
             <p className="mt-0.5 text-xs text-neutral-400">{p.tech}</p>
@@ -598,7 +598,7 @@ function DeveloperCVPreview() {
         <div className="grid grid-cols-[1fr_auto] gap-x-4">
           <div>
             <p className="font-semibold">Level 3 Diploma in Dental Nursing (NEBDN)</p>
-            <p className="text-sm text-neutral-500">Everest Education · UK <span className="text-violet-500 font-medium">[Currently Enrolled]</span></p>
+            <p className="text-sm text-neutral-500">Everest Education · UK <span className="font-medium text-neutral-600">[Currently Enrolled]</span></p>
           </div>
           <p className="shrink-0 text-right text-xs text-neutral-400">Jan 2026 – Present</p>
         </div>
@@ -664,7 +664,7 @@ function AllRoundCVPreview() {
         <div className="grid grid-cols-[1fr_auto] gap-x-4">
           <div>
             <p className="font-semibold">Level 3 Diploma in Dental Nursing (NEBDN)</p>
-            <p className="text-sm text-neutral-500">Everest Education · UK <span className="text-violet-500 font-medium">[Currently Enrolled]</span></p>
+            <p className="text-sm text-neutral-500">Everest Education · UK <span className="font-medium text-neutral-600">[Currently Enrolled]</span></p>
           </div>
           <p className="shrink-0 text-right text-xs text-neutral-400">Jan 2026 – Present</p>
         </div>
@@ -687,7 +687,7 @@ function DentalNursingCVPreview() {
     <div className="mx-auto max-w-3xl bg-white px-8 py-10 text-neutral-900">
       <div className="mb-2">
         <h1 className="text-3xl font-bold tracking-tight">Birash Thing</h1>
-        <p className="mt-1 text-base font-medium text-violet-700">Trainee Dental Nurse</p>
+        <p className="mt-1 text-base font-medium text-neutral-700">Trainee Dental Nurse</p>
         <p className="mt-2 text-xs text-neutral-600">
           Aldershot, GU11 3RJ · 07778 781635 · thenngbirash124@gmail.com
         </p>
@@ -700,7 +700,7 @@ function DentalNursingCVPreview() {
       <div className="grid grid-cols-2 gap-1 text-sm text-neutral-700">
         {dentalKeySkills.map(s => (
           <div key={s} className="flex items-start gap-1.5">
-            <span className="mt-[3px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />
+            <span className="mt-[3px] h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-400" />
             {s}
           </div>
         ))}
@@ -761,19 +761,16 @@ const CV_TYPES = {
   developer: {
     label: 'Full-Stack Developer',
     sub: 'MERN · 6+ years',
-    activeClass: 'bg-blue-600 text-white border-blue-600',
     preview: DeveloperCVPreview,
   },
   allround: {
     label: 'All-Round',
     sub: 'Dev · Admin · Sales',
-    activeClass: 'bg-emerald-600 text-white border-emerald-600',
     preview: AllRoundCVPreview,
   },
   dental: {
     label: 'Dental Nursing',
     sub: 'NEBDN enrolled',
-    activeClass: 'bg-violet-600 text-white border-violet-600',
     preview: DentalNursingCVPreview,
   },
 }
@@ -807,26 +804,23 @@ export default function CV() {
       <meta property="og:description" content="CV of Birash Thing — Full-Stack MERN Developer. 6+ years experience. Right to work in the UK." />
       <meta property="og:url" content="https://bluenwhite.co.uk/cv" />
     </Helmet>
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen bg-paper">
 
       {/* Toolbar */}
-      <div className="sticky top-0 z-10 border-b bg-white/90 px-4 py-3 backdrop-blur
-                      dark:border-neutral-800 dark:bg-neutral-900/90 sm:px-8">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center gap-3">
+      <div className="sticky top-0 z-10 border-b border-rule bg-paper/90 px-4 py-3 backdrop-blur sm:px-8">
+        <div className="mx-auto flex max-w-4xl flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
           {/* CV type selector */}
-          <div className="flex flex-1 flex-wrap gap-2">
+          <div className="flex flex-wrap gap-x-6 gap-y-1.5">
             {Object.entries(CV_TYPES).map(([key, cfg]) => (
               <button
                 key={key}
                 onClick={() => setActive(key)}
-                className={`rounded-xl border px-3 py-1.5 text-sm font-medium transition
-                  ${active === key
-                    ? cfg.activeClass
-                    : 'border-neutral-200 bg-white text-neutral-600 hover:bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300'
-                  }`}
+                className={`text-ed-sm transition-colors ${
+                  active === key ? 'font-semibold text-accent' : 'text-ink-muted hover:text-accent'
+                }`}
               >
                 {cfg.label}
-                <span className={`ml-1.5 text-[10px] font-normal opacity-70`}>{cfg.sub}</span>
+                <span className="ml-1.5 text-ed-xs font-normal opacity-70">{cfg.sub}</span>
               </button>
             ))}
           </div>
@@ -835,15 +829,11 @@ export default function CV() {
           <button
             onClick={handleDownload}
             disabled={generating}
-            className={`inline-flex items-center gap-2 rounded-xl px-5 py-2 text-sm font-medium text-white transition disabled:opacity-60
-              ${active === 'developer' ? 'bg-blue-600 hover:bg-blue-700'
-                : active === 'allround' ? 'bg-emerald-600 hover:bg-emerald-700'
-                : 'bg-violet-600 hover:bg-violet-700'
-              }`}
+            className="inline-flex shrink-0 items-center gap-2 bg-accent px-5 py-2 font-display text-ed-sm uppercase tracking-ed-wide text-accent-ink transition-colors hover:bg-ink disabled:opacity-60"
           >
             {generating
-              ? <><FiLoader size={14} className="animate-spin" /> Generating…</>
-              : <><FiDownload size={14} /> Download PDF</>
+              ? <><FiLoader size={14} className="animate-spin" aria-hidden="true" /> Generating…</>
+              : <><FiDownload size={14} aria-hidden="true" /> Download PDF</>
             }
           </button>
         </div>
@@ -851,8 +841,7 @@ export default function CV() {
 
       {/* CV Preview */}
       <div className="py-8">
-        <div className="mx-auto max-w-4xl rounded-2xl border bg-white shadow-lg
-                        dark:border-neutral-700 dark:bg-white">
+        <div className="mx-auto max-w-4xl border border-rule bg-white">
           <Preview />
         </div>
       </div>
